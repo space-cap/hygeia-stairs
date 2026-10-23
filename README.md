@@ -26,6 +26,7 @@ hygeia-stairs/
 │   ├── 17_sales_script_and_objection_handling.md # 현장 대면 영업 & 거절 극복 스크립트
 │   ├── 18_tax_and_business_registration_guide.md # 직장인 겸업 안전 사업자등록 & 세무
 │   ├── 19_professional_dress_code_guide.md       # 신뢰와 청결의 전문가 복장 & 그루밍
+│   ├── 20_stain_and_residue_removal_guide.md     # 계단·벽면·바닥 이물질 및 특수오염 제거
 │   └── (01~08 거시 사업계획서 및 스케일업 시나리오)
 └── README.md
 ```
