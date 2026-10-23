@@ -28,6 +28,7 @@
 | 16 | **[초기 장비 구매 가이드](16_equipment_purchase_guide.md)** | **20만 원 내로 쿠팡/네이버쇼핑에서 오늘 바로 결제하는 장비 확정 리스트** | **대표 (장비 세팅)** |
 | 17 | **[실전 영업 & 거절 극복](17_sales_script_and_objection_handling.md)** | **대면 30초 피칭, 최고층 인터폰, 공인중개사 제휴, 5대 거절 즉각 반박 치트시트** | **대표 (현장 영업)** |
 | 18 | **[직장인 겸업 세무 가이드](18_tax_and_business_registration_guide.md)** | **회사 모르게 안전한 간이과세자 5분 등록, 4대보험 공단 통보 기준, 현금영수증** | **대표 (행정·세무)** |
+| 19 | **[전문가 복장 & 그루밍](19_professional_dress_code_guide.md)** | **신뢰감을 주는 2트랙(영업/실전) 복장 규정, 자석 명찰, 위생 5대 수칙** | **대표 (이미지·신뢰)** |
 
 ---
 
@@ -83,14 +84,15 @@
 **읽는 순서 (실전 로드맵)**:
 1. **[09 린 스타트 계획](09_lean_start_plan.md)**: 전체적인 사이드잡 목표와 월별 수익 구조 파악
 2. **[16 초기 장비 구매 가이드](16_equipment_purchase_guide.md)**: 오늘 바로 주문할 18만 원 장비 확정
-3. **[17 실전 영업 & 거절 극복](17_sales_script_and_objection_handling.md)**: 대면 30초 피칭 & 1개 층 무료 시범 클로징 숙지
-4. **[12 인쇄용 전단지 디자인](12_flier_design.md)**: 주말 배포용 전단지 30~50매 출력 준비 → **[📄 전단지 즉시 인쇄 웹서식](../print/flier.html)**
-5. **[15 임장 & 고객관리 장부](15_field_crm_template.md)**: 클립보드에 끼워 주말 대치동 도보 임장 시작 → **[📋 도보 임장 기록부 인쇄 웹서식](../print/field_crm.html)**
-6. **[모바일 견적·순익 계산기](../print/calculator.html)**: 현장에서 스마트폰으로 즉시 견적 확인 및 카톡 문자 복사
-7. **[10 무소음 빌라 청소 SOP](10_silent_villa_cleaning.md)** & **[11 경쟁사 분석](11_competitor_flier_analysis.md)**: 25분 스피드 루틴 숙지
-8. **[13 현장 표준계약서](13_standard_contract_template.md)** & **[14 카톡 보고 템플릿](14_inspection_checklist_and_report.md)**: 첫 계약 체결 및 보고에 사용 → **[📝 현장 표준계약서 인쇄 웹서식](../print/contract.html)**
-9. **[18 직장인 겸업 세무 가이드](18_tax_and_business_registration_guide.md)**: 첫 계약 체결 시 홈택스 5분 간이과세자 신청
-10. (향후 전업 확장 시): 02, 03, 04, 05, 06, 07, 08 참조
+3. **[19 전문가 복장 & 그루밍](19_professional_dress_code_guide.md)**: 대치동 건물주 신뢰를 얻는 2트랙 착장 & 자석 명찰 세팅
+4. **[17 실전 영업 & 거절 극복](17_sales_script_and_objection_handling.md)**: 대면 30초 피칭 & 1개 층 무료 시범 클로징 숙지
+5. **[12 인쇄용 전단지 디자인](12_flier_design.md)**: 주말 배포용 전단지 30~50매 출력 준비 → **[📄 전단지 즉시 인쇄 웹서식](../print/flier.html)**
+6. **[15 임장 & 고객관리 장부](15_field_crm_template.md)**: 클립보드에 끼워 주말 대치동 도보 임장 시작 → **[📋 도보 임장 기록부 인쇄 웹서식](../print/field_crm.html)**
+7. **[모바일 견적·순익 계산기](../print/calculator.html)**: 현장에서 스마트폰으로 즉시 견적 확인 및 카톡 문자 복사
+8. **[10 무소음 빌라 청소 SOP](10_silent_villa_cleaning.md)** & **[11 경쟁사 분석](11_competitor_flier_analysis.md)**: 25분 스피드 루틴 숙지
+9. **[13 현장 표준계약서](13_standard_contract_template.md)** & **[14 카톡 보고 템플릿](14_inspection_checklist_and_report.md)**: 첫 계약 체결 및 보고에 사용 → **[📝 현장 표준계약서 인쇄 웹서식](../print/contract.html)**
+10. **[18 직장인 겸업 세무 가이드](18_tax_and_business_registration_guide.md)**: 첫 계약 체결 시 홈택스 5분 간이과세자 신청
+11. (향후 전업 확장 시): 02, 03, 04, 05, 06, 07, 08 참조
 
 ### 추가로 확인하면 정밀해지는 정보
 1. 회사 겸업 금지 규정 유무(취업규칙 서면 확인)
