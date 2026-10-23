@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 실전 모바일 견적기 & 순수익 계산기</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --accent: #f59e0b;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--slate-800);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* 상단 네비게이션 헤더 */
+    header {
+      background: linear-gradient(135deg, var(--slate-900), var(--slate-800));
+      color: #ffffff;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+    .brand-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-top {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+    .btn-top:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* 메인 컨테이너 */
+    .container {
+      max-width: 900px;
+      margin: 16px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        grid-template-columns: 1.1fr 0.9fr;
+        margin: 24px auto;
+        padding: 0 20px;
+      }
+    }
+
+    /* 카드 공통 스타일 */
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--slate-200);
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-title span.num {
+      background: var(--slate-100);
+      color: var(--primary);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    /* 입력 그룹 */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-bottom: 8px;
+    }
+
+    /* 선택 옵션 버튼 그리드 (라디오 대체) */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .option-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .option-grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .option-btn {
+      position: relative;
+    }
+    .option-btn input[type="radio"],
+    .option-btn input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .option-btn label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px 8px;
+      background: var(--slate-50);
+      border: 1.5px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 48px;
+    }
+    .option-btn label small {
+      font-size: 11px;
+      color: var(--slate-600);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .option-btn input:checked + label {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    /* 추가 옵션 체크박스 리스트 */
+    .addon-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .addon-item:last-child {
+      margin-bottom: 0;
+    }
+    .addon-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .addon-left input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .addon-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-800);
+    }
+    .addon-price {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* 우측/하단 결과 대시보드 */
+    .result-card {
+      background: linear-gradient(180deg, #ffffff 0%, var(--slate-50) 100%);
+      border: 2px solid var(--primary);
+      position: sticky;
+      top: 76px;
+    }
+
+    .result-header {
+      text-align: center;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--slate-200);
+    }
+    .result-badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+    .total-price-label {
+      font-size: 13px;
+      color: var(--slate-600);
+      font-weight: 500;
+    }
+    .total-price-val {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--slate-900);
+      line-height: 1.1;
+      margin: 4px 0;
+      letter-spacing: -1px;
+    }
+    .total-price-val span.won {
+      font-size: 20px;
+      font-weight: 700;
+      margin-left: 2px;
+    }
+    .per-visit-price {
+      font-size: 13px;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    /* 세부 지표 그리드 */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .metric-box {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+    }
+    .metric-box.highlight {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+    .metric-label {
+      font-size: 11px;
+      color: var(--slate-600);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .metric-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+    .metric-val.green {
+      color: var(--success);
+    }
+
+    /* 실행 버튼 세트 */
+    .action-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-kakao-copy {
+      background: #fee500;
+      color: #191919;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(254, 229, 0, 0.4);
+      transition: transform 0.1s, opacity 0.2s;
+    }
+    .btn-kakao-copy:active {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
+
+    .btn-print-quote {
+      background: var(--slate-900);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-print-quote:hover {
+      background: var(--slate-800);
+    }
+
+    /* 복사 완료 토스트 메시지 */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(15, 23, 42, 0.95);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* 인쇄용 서식 (화면에서는 숨김) */
+    .print-only {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      header, .container, .toast {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+        max-width: 210mm;
+        margin: 0 auto;
+        padding: 15mm;
+        font-size: 13px;
+        color: #000;
+      }
+      .print-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+      }
+      .print-table th, .print-table td {
+        border: 1px solid #333;
+        padding: 8px 12px;
+      }
+      .print-table th {
+        background: #eee;
+        width: 25%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 헤더 -->
+  <header>
+    <div class="brand-title">
+      <span class="brand-badge">대치본점</span>
+      <span class="brand-name">하이지아 견적 계산기</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn-top" onclick="window.print()">
+        🖨️ A4 인쇄
+      </button>
+    </div>
+  </header>
+
+  <!-- 메인 폼 & 대시보드 -->
+  <div class="container">
+    
+    <!-- 좌측 입력 패널 -->
+    <div class="input-panel">
+      
+      <!-- 1. 건물 유형 -->
+      <div class="card form-group">
+        <div class="section-title">
+          <span class="num">1</span> 건물 유형 선택
+        </div>
+        <div class="option-grid option-grid-3">
+          <div class="option-btn">
+            <input type="radio" name="building_type" id="type_villa" value="villa" checked onchange="calculate()">
+            <label for="type_villa">
+              🏠 빌라/다세대
+              <small>주거형 공용부</small>
+            </label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="building_type" id="type_commercial" value="commercial" onchange="calculate()">
+            <label for="type_commercial">
+              🏢 상가/근생
+              <small>학원·음식점 빌딩</small>
+            </label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="building_type" id="type_office" value="office" onchange="calculate()">
+            <label for="type_office">
+              💼 오피스/소호
+              <small>사무실 전용</small>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 층수 및 엘리베이터 -->
+      <div class="card form-group">
+        <div class="section-title">
+          <span class="num">2</span> 층수 및 승강기 유무
+        </div>
+        
+        <label class="form-label">건물 전체 층수</label>
+        <div class="option-grid option-grid-4" style="margin-bottom: 12px;">
+          <div class="option-btn">
+            <input type="radio" name="floors" id="fl_3" value="3" onchange="calculate()">
+            <label for="fl_3">3층 이하</label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="floors" id="fl_4" value="4" checked onchange="calculate()">
+            <label for="fl_4">4층</label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="floors" id="fl_5" value="5" onchange="calculate()">
+            <label for="fl_5">5층</label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="floors" id="fl_6" value="6" onchange="calculate()">
+            <label for="fl_6">6층 이상</label>
+          </div>
+        </div>
+
+        <label class="form-label">엘리베이터(승강기) 여부</label>
+        <div class="option-grid">
+          <div class="option-btn">
+            <input type="radio" name="elevator" id="elev_no" value="no" checked onchange="calculate()">
+            <label for="elev_no">❌ 엘리베이터 없음<small>계단 도보 이동</small></label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="elevator" id="elev_yes" value="yes" onchange="calculate()">
+            <label for="elev_yes">⭕ 엘리베이터 있음<small>승강기 내부 케어 포함</small></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 방문 횟수 -->
+      <div class="card form-group">
+        <div class="section-title">
+          <span class="num">3</span> 청소 방문 주기 (월 정기)
+        </div>
+        <div class="option-grid option-grid-3">
+          <div class="option-btn">
+            <input type="radio" name="frequency" id="freq_1" value="1" checked onchange="calculate()">
+            <label for="freq_1">
+              주 1회
+              <small>월 4회 방문 (추천)</small>
+            </label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="frequency" id="freq_2" value="2" onchange="calculate()">
+            <label for="freq_2">
+              주 2회
+              <small>월 8회 방문</small>
+            </label>
+          </div>
+          <div class="option-btn">
+            <input type="radio" name="frequency" id="freq_3" value="3" onchange="calculate()">
+            <label for="freq_3">
+              주 3회
+              <small>월 12회 방문</small>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 추가 부가서비스 옵션 -->
+      <div class="card form-group">
+        <div class="section-title">
+          <span class="num">4</span> 특화 부가서비스 옵션
+        </div>
+
+        <label class="addon-item">
+          <div class="addon-left">
+            <input type="checkbox" id="opt_recycle" onchange="calculate()">
+            <span class="addon-name">♻️ 재활용 분리수거함 정리 & 대행</span>
+          </div>
+          <span class="addon-price">+20,000원/월</span>
+        </label>
+
+        <label class="addon-item">
+          <div class="addon-left">
+            <input type="checkbox" id="opt_foodwaste" onchange="calculate()">
+            <span class="addon-name">🪣 음식물 쓰레기 수거통 살균 세척</span>
+          </div>
+          <span class="addon-price">+15,000원/월</span>
+        </label>
+
+        <label class="addon-item">
+          <div class="addon-left">
+            <input type="checkbox" id="opt_deepclean" checked onchange="calculate()">
+            <span class="addon-name">✨ 첫 달 계단 묵은 때 딥클린 (무상 프로모션)</span>
+          </div>
+          <span class="addon-price" style="color: #059669;">0원 (무료 혜택)</span>
+        </label>
+      </div>
+
+    </div>
+
+    <!-- 우측 산출 결과 패널 -->
+    <div class="output-panel">
+      <div class="card result-card">
+        
+        <div class="result-header">
+          <div class="result-badge" id="building_summary_badge">빌라 4층 (승강기 무 / 주1회)</div>
+          <div class="total-price-label">추천 월 관리비 (VAT 별도)</div>
+          <div class="total-price-val">
+            <span id="display_total_price">70,000</span><span class="won">원</span>
+          </div>
+          <div class="per-visit-price" id="display_per_visit">
+            회당 약 17,500원꼴 (월 4회 기준)
+          </div>
+        </div>
+
+        <!-- 세부 효율 지표 -->
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-label">⏱️ 회당 소요시간</div>
+            <div class="metric-val" id="metric_time">25분</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">📅 월 총 투입시간</div>
+            <div class="metric-val" id="metric_month_time">1.7시간</div>
+          </div>
+          <div class="metric-box highlight">
+            <div class="metric-label">💰 월 순수익 (약품 제외)</div>
+            <div class="metric-val green" id="metric_profit">66,500원</div>
+          </div>
+          <div class="metric-box highlight">
+            <div class="metric-label">⚡ 시급 환산액</div>
+            <div class="metric-val green" id="metric_hourly">39,100원</div>
+          </div>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div class="action-btn-group">
+          <button class="btn-kakao-copy" onclick="copyKakaoQuote()">
+            💬 카카오톡 전송용 견적서 1초 복사
+          </button>
+          <button class="btn-print-quote" onclick="window.print()">
+            📄 견적서 A4 인쇄 / PDF 저장
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 인쇄 전용 A4 견적서 뷰 -->
+  <div class="print-only">
+    <div style="text-align: center; border-bottom: 2px solid #0f172a; padding-bottom: 10px; margin-bottom: 20px;">
+      <h1 style="font-size: 26px; font-weight: 900; margin-bottom: 5px;">하이지아(Hygeia) 정기 건물관리 견적서</h1>
+      <p style="color: #666; font-size: 13px;">대치동 거주 대표 직접 관리 | 무소음 새벽 정기 케어 | 매회 사진 안심 보고</p>
+    </div>
+
+    <table class="print-table">
+      <tr>
+        <th>수신(고객명)</th>
+        <td id="p_client">대치동 건물주 귀하</td>
+        <th>견적일자</th>
+        <td id="p_date">2026년 10월</td>
+      </tr>
+      <tr>
+        <th>공급자</th>
+        <td colspan="3">하이지아 (Hygeia) 대치본점 / 대표 직통: 010-XXXX-XXXX</td>
+      </tr>
+      <tr>
+        <th>관리 대상물</th>
+        <td colspan="3" id="p_building">빌라 4층 (엘리베이터 없음)</td>
+      </tr>
+      <tr>
+        <th>방문 주기</th>
+        <td colspan="3" id="p_frequency">주 1회 (월 4회 방문)</td>
+      </tr>
+      <tr>
+        <th>포함 작업 범위</th>
+        <td colspan="3">
+          1. 1층 공동현관 유리창 손지문·먼지 제거 및 도어락 살균<br>
+          2. 전 층 계단 정전기/극세사 건·반건식 오염 제거 및 모서리 청소<br>
+          3. 계단 손잡이(핸드레일) 및 창틀 먼지 훔치기 소독<br>
+          4. 1층 주차장 꽁초·낙엽 쓰레기 정리<br>
+          5. <b>[특전]</b> 매회 청소 완료 직후 4컷 전/후 사진 카카오톡 안심 전송
+        </td>
+      </tr>
+      <tr>
+        <th>선택 옵션</th>
+        <td colspan="3" id="p_addons">첫 달 계단 묵은 때 딥클린 무상 제공</td>
+      </tr>
+      <tr style="background: #f8fafc;">
+        <th style="font-size: 16px; color: #0d9488;">최종 견적 금액</th>
+        <td colspan="3" style="font-size: 20px; font-weight: 900; color: #0f172a;" id="p_price">
+          월 70,000 원 (VAT 별도)
+        </td>
+      </tr>
+    </table>
+
+    <div style="margin-top: 30px; font-size: 12px; line-height: 1.6; color: #555;">
+      • 본 견적은 현장 실사 및 협의에 따라 일부 조정될 수 있습니다.<br>
+      • 하이지아는 1억 원 영업배상책임보험에 가입되어 있어 시설물 파손 및 보행 안전사고에 완벽히 대응합니다.<br>
+      • 문의: 010-XXXX-XXXX (대치동 관내 10분 내 방문 상담 가능)
+    </div>
+  </div>
+
+  <!-- 복사 알림 토스트 -->
+  <div class="toast" id="toastMsg">
+    ✅ 카카오톡 견적서가 복사되었습니다!
+  </div>
+
+  <script>
+    // 견적 계산 로직
+    function calculate() {
+      const type = document.querySelector('input[name="building_type"]:checked').value;
+      const floors = parseInt(document.querySelector('input[name="floors"]:checked').value);
+      const elevator = document.querySelector('input[name="elevator"]:checked').value;
+      const freq = parseInt(document.querySelector('input[name="frequency"]:checked').value);
+
+      const optRecycle = document.getElementById('opt_recycle').checked;
+      const optFoodwaste = document.getElementById('opt_foodwaste').checked;
+
+      // 1. 기준 단가 (주 1회, 4층 빌라 기준 70,000원)
+      let baseMonthly = 70000;
+
+      // 층수 가감
+      if (floors === 3) baseMonthly = 60000;
+      else if (floors === 4) baseMonthly = 70000;
+      else if (floors === 5) baseMonthly = 80000;
+      else if (floors >= 6) baseMonthly = 95000;
+
+      // 건물 유형 보정 (상가는 쓰레기 및 화장실 감안 +20%, 오피스는 +15%)
+      if (type === 'commercial') baseMonthly += 20000;
+      else if (type === 'office') baseMonthly += 15000;
+
+      // 엘리베이터 보정 (엘리베이터 있으면 계단 오염은 줄지만 엘베 내부 거울/바닥 케어 추가)
+      if (elevator === 'yes') {
+        baseMonthly += 10000;
+      }
+
+      // 주당 횟수 승수 계산
+      let freqMultiplier = 1;
+      let monthVisits = 4;
+      if (freq === 1) {
+        freqMultiplier = 1.0;
+        monthVisits = 4;
+      } else if (freq === 2) {
+        freqMultiplier = 1.75; // 주 2회는 약간 할인 적용 (경쟁력 확보)
+        monthVisits = 8;
+      } else if (freq === 3) {
+        freqMultiplier = 2.45;
+        monthVisits = 12;
+      }
+
+      let totalMonthly = Math.round((baseMonthly * freqMultiplier) / 5000) * 5000;
+
+      // 추가 부가옵션 가산
+      let addonList = [];
+      if (optRecycle) {
+        totalMonthly += 20000;
+        addonList.push('재활용 분리수거 대행(+2만)');
+      }
+      if (optFoodwaste) {
+        totalMonthly += 15000;
+        addonList.push('음식물통 세척(+1.5만)');
+      }
+      addonList.push('첫 달 묵은 때 딥클린 무료');
+
+      // 회당 소요시간 계산 (분)
+      let singleTime = 20 + (floors - 3) * 5;
+      if (type === 'commercial') singleTime += 10;
+      if (elevator === 'yes') singleTime += 5;
+      if (optRecycle) singleTime += 8;
+      if (optFoodwaste) singleTime += 5;
+
+      // 한 달 총 투입시간 (시간)
+      let totalHours = (singleTime * monthVisits) / 60;
+
+      // 순수익 계산 (약품/걸레 소모품비 약 5% 제외)
+      let netProfit = Math.round(totalMonthly * 0.95);
+      let hourlyRate = Math.round(netProfit / totalHours);
+
+      // DOM 갱신
+      document.getElementById('display_total_price').textContent = totalMonthly.toLocaleString();
+      let perVisit = Math.round(totalMonthly / monthVisits);
+      document.getElementById('display_per_visit').textContent = `회당 약 ${perVisit.toLocaleString()}원꼴 (월 ${monthVisits}회 기준)`;
+
+      // 요약 뱃지
+      let typeText = type === 'villa' ? '빌라' : (type === 'commercial' ? '상가' : '오피스');
+      let elevText = elevator === 'yes' ? '승강기 유' : '승강기 무';
+      document.getElementById('building_summary_badge').textContent = `${typeText} ${floors}층 (${elevText} / 주${freq}회)`;
+
+      // 메트릭스
+      document.getElementById('metric_time').textContent = `${singleTime}분`;
+      document.getElementById('metric_month_time').textContent = `${totalHours.toFixed(1)}시간`;
+      document.getElementById('metric_profit').textContent = `${netProfit.toLocaleString()}원`;
+      document.getElementById('metric_hourly').textContent = `${hourlyRate.toLocaleString()}원`;
+
+      // 인쇄용 뷰 갱신
+      document.getElementById('p_building').textContent = `${typeText} ${floors}층 (${elevText})`;
+      document.getElementById('p_frequency').textContent = `주 ${freq}회 (월 ${monthVisits}회 방문)`;
+      document.getElementById('p_addons').textContent = addonList.join(', ');
+      document.getElementById('p_price').textContent = `월 ${totalMonthly.toLocaleString()} 원 (VAT 별도)`;
+      
+      const now = new Date();
+      document.getElementById('p_date').textContent = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
+
+      // 전역 저장 (카톡 복사용)
+      window.currentQuote = {
+        typeText,
+        floors,
+        elevText,
+        freq,
+        monthVisits,
+        totalMonthly,
+        perVisit,
+        addonList
+      };
+    }
+
+    // 카카오톡 견적 문자 클립보드 복사
+    function copyKakaoQuote() {
+      const q = window.currentQuote;
+      const text = `[하이지아(Hygeia) 프리미엄 정기관리 견적서]
+
+안녕하세요 사장님, 대치동 거주 대표가 직접 관리하는 하이지아 청소입니다.
+문의하신 건물 정기관리 견적 안내드립니다.
+
+■ 대상 건물: 대치동 ${q.typeText} ${q.floors}층 (${q.elevText})
+■ 방문 주기: 주 ${q.freq}회 (월 ${q.monthVisits}회 정기 방문)
+■ 포함 작업 범위:
+  1. 1층 공동현관 유리창/도어락 살균 케어
+  2. 전 층 계단 난간 손잡이 소독 및 미세먼지 제거
+  3. 바닥 모서리 찌든 때 및 꽁초·낙엽 수거
+  4. 1층 주차장/분리수거 구역 청결 관리
+  5. [특전] 매회 청소 완료 즉시 카톡 4컷 사진 보고!
+
+■ 선택 옵션: ${q.addonList.join(', ')}
+■ 월 관리비: ${q.totalMonthly.toLocaleString()}원 (VAT 별도 / 회당 약 ${q.perVisit.toLocaleString()}원)
+
+※ 첫 달 계약 시 계단 묵은 때 딥클린 무상 시범 제공합니다.
+※ 1억 원 영업배상책임보험 가입 완료 (시설물 파손 걱정 제로)
+
+- 하이지아 대치본점 대표 직통: 010-XXXX-XXXX`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✅ 카톡 견적서가 복사되었습니다! 채팅창에 붙여넣으세요.');
+      }).catch(err => {
+        alert('복사 중 오류가 발생했습니다. 브라우저 권한을 확인해주세요.');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // 초기 실행
+    window.addEventListener('DOMContentLoaded', () => {
+      calculate();
+    });
+  </script>
+</body>
+</html>
