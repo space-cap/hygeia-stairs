@@ -47,7 +47,9 @@ hygeia-stairs/
 ## 🚀 빠른 시작 가이드 (Quick Start)
 
 1. **🌐 [공식 웹 랜딩페이지]**: [`index.html`](index.html)  
-   👉 당근마켓 비즈프로필, 네이버 플레이스, 문자 견적서에 링크를 걸어 고객 신뢰도를 즉시 극대화하는 모바일 최적화 웹사이트입니다. (GitHub Pages 연동 시 `https://space-cap.github.io/hygeia-stairs/`로 무료 공개 가능)
+   👉 당근마켓 비즈프로필, 네이버 플레이스, 문자 견적서에 링크를 걸어 고객 신뢰도를 즉시 극대화하는 모바일 최적화 웹사이트입니다.
+   - **GitHub Pages**: `https://space-cap.github.io/hygeia-stairs/`
+   - **Vercel (연동 시)**: `https://hygeia-stairs.vercel.app` (초고속 글로벌 CDN & 커스텀 도메인 지원)
 2. **🌟 [모바일 현장 사령탑]**: [`print/index.html`](print/index.html)  
    👉 **스마트폰 홈 화면에 추가**하여 현장에서 터치 한 번으로 견적기, 사진 보고기, 명함, 스크립트 실행!
 3. **실전 모바일 도구 & 출력물**:
@@ -57,8 +59,8 @@ hygeia-stairs/
    - 📄 **홍보 전단지**: [`print/flier.html`](print/flier.html) (A4 세로 출력, 30~50매)
    - 📝 **현장 표준계약서**: [`print/contract.html`](print/contract.html) (A4 세로 1장 출력, 3매)
    - 📋 **도보 임장 기록부**: [`print/field_crm.html`](print/field_crm.html) (A4 가로 1장 출력, 2매)
-3. **D-Day 24시간 행동 체크리스트**: [`docs/23_dday_final_checklist.md`](docs/23_dday_final_checklist.md)
-4. **도보 임장 지도 & 동선**: [`docs/21_daechi_field_map_and_route.md`](docs/21_daechi_field_map_and_route.md)
+4. **D-Day 24시간 행동 체크리스트**: [`docs/23_dday_final_checklist.md`](docs/23_dday_final_checklist.md)
+5. **도보 임장 지도 & 동선**: [`docs/21_daechi_field_map_and_route.md`](docs/21_daechi_field_map_and_route.md)
 5. **실전 영업 & 거절 극복 치트시트**: [`docs/17_sales_script_and_objection_handling.md`](docs/17_sales_script_and_objection_handling.md)
 6. **첫 계약 후 30일 안착 매뉴얼**: [`docs/26_first_client_onboarding_sop.md`](docs/26_first_client_onboarding_sop.md)
 7. **컴플레인 & 비상 대응 SOP**: [`docs/27_claim_and_emergency_sop.md`](docs/27_claim_and_emergency_sop.md)
