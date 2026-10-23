@@ -20,7 +20,8 @@ hygeia-stairs/
 │   ├── manual_sales.html     # 💬 [포켓 매뉴얼] 대면 피칭 & 5대 거절 대응 모바일 치트시트
 │   ├── manual_route.html     # 🗺️ [포켓 매뉴얼] 대치동 도보 임장 지도 & 3대 블록 동선
 │   ├── manual_stain.html     # 🧰 [포켓 매뉴얼] 계단·벽면 특수오염 1분 화학 용해 가이드
-│   └── manual_checklist.html # ✅ [포켓 매뉴얼] D-Day 24시간 패킹 & 터치형 인터랙티브 체크리스트
+│   ├── manual_checklist.html # ✅ [포켓 매뉴얼] D-Day 24시간 패킹 & 터치형 인터랙티브 체크리스트
+│   └── copy_tool.html        # 📋 [마케팅 런처] 당근·네이버·카톡 고객문자 1초 원클릭 복사기
 ├── docs/               # [사업 계획 및 실전 매뉴얼]
 │   ├── README.md       # 전체 사업계획서 목차 및 읽는 순서
 │   ├── 09_lean_start_plan.md           # 300만원 자본금 사이드잡 린 스타트 계획
@@ -42,6 +43,9 @@ hygeia-stairs/
 │   ├── 25_local_digital_marketing_guide.md       # 초밀착 로컬 디지털 마케팅 가이드
 │   ├── 26_first_client_onboarding_sop.md         # 첫 계약 후 30일 골든 온보딩 매뉴얼
 │   ├── 27_claim_and_emergency_sop.md             # 현장 컴플레인 & 비상 대응 SOP
+│   ├── 28_carrot_and_naver_copy_package.md       # 당근마켓 & 네이버 스마트플레이스 즉시 등록 원고
+│   ├── 29_print_order_guide.md                   # 성원애드피아 실물 명함·전단지 1분 인쇄 발주 가이드
+│   ├── 30_kakaotalk_channel_setup_guide.md       # 카카오톡 비즈니스 채널 개설 & 웰컴 메시지 가이드
 │   └── (01~08 거시 사업계획서 및 스케일업 시나리오)
 └── README.md
 ```
@@ -63,13 +67,17 @@ hygeia-stairs/
    - 📄 **홍보 전단지**: [`print/flier.html`](print/flier.html) (A4 세로 출력, 30~50매)
    - 📝 **현장 표준계약서**: [`print/contract.html`](print/contract.html) (A4 세로 1장 출력, 3매)
    - 📋 **도보 임장 기록부**: [`print/field_crm.html`](print/field_crm.html) (A4 가로 1장 출력, 2매)
-4. **D-Day 24시간 행동 체크리스트**: [`docs/23_dday_final_checklist.md`](docs/23_dday_final_checklist.md)
-5. **도보 임장 지도 & 동선**: [`docs/21_daechi_field_map_and_route.md`](docs/21_daechi_field_map_and_route.md)
-5. **실전 영업 & 거절 극복 치트시트**: [`docs/17_sales_script_and_objection_handling.md`](docs/17_sales_script_and_objection_handling.md)
-6. **첫 계약 후 30일 안착 매뉴얼**: [`docs/26_first_client_onboarding_sop.md`](docs/26_first_client_onboarding_sop.md)
-7. **컴플레인 & 비상 대응 SOP**: [`docs/27_claim_and_emergency_sop.md`](docs/27_claim_and_emergency_sop.md)
-8. **초밀착 로컬 디지털 마케팅**: [`docs/25_local_digital_marketing_guide.md`](docs/25_local_digital_marketing_guide.md)
-9. **월 결제 & 미납 방지 매뉴얼**: [`docs/24_billing_and_payment_sop.md`](docs/24_billing_and_payment_sop.md)
-10. **직장인 겸업 안전 세무 가이드**: [`docs/18_tax_and_business_registration_guide.md`](docs/18_tax_and_business_registration_guide.md)
-11. **무소음 청소 매뉴얼**: [`docs/10_silent_villa_cleaning.md`](docs/10_silent_villa_cleaning.md)
-12. **전체 사업계획서 인덱스**: [`docs/README.md`](docs/README.md)
+4. **📋 [마케팅 카피 런처]**: [`print/copy_tool.html`](print/copy_tool.html) (당근·네이버·카톡 고객문자 1초 원클릭 복사기)
+5. **🥕 당근 & 네이버 즉시 등록 원고**: [`docs/28_carrot_and_naver_copy_package.md`](docs/28_carrot_and_naver_copy_package.md)
+6. **🖨️ 실물 명함·전단지 1분 인쇄 발주**: [`docs/29_print_order_guide.md`](docs/29_print_order_guide.md)
+7. **💬 카카오톡 비즈니스 채널 세팅**: [`docs/30_kakaotalk_channel_setup_guide.md`](docs/30_kakaotalk_channel_setup_guide.md)
+8. **D-Day 24시간 행동 체크리스트**: [`docs/23_dday_final_checklist.md`](docs/23_dday_final_checklist.md)
+9. **도보 임장 지도 & 동선**: [`docs/21_daechi_field_map_and_route.md`](docs/21_daechi_field_map_and_route.md)
+10. **실전 영업 & 거절 극복 치트시트**: [`docs/17_sales_script_and_objection_handling.md`](docs/17_sales_script_and_objection_handling.md)
+11. **첫 계약 후 30일 안착 매뉴얼**: [`docs/26_first_client_onboarding_sop.md`](docs/26_first_client_onboarding_sop.md)
+12. **컴플레인 & 비상 대응 SOP**: [`docs/27_claim_and_emergency_sop.md`](docs/27_claim_and_emergency_sop.md)
+13. **초밀착 로컬 디지털 마케팅**: [`docs/25_local_digital_marketing_guide.md`](docs/25_local_digital_marketing_guide.md)
+14. **월 결제 & 미납 방지 매뉴얼**: [`docs/24_billing_and_payment_sop.md`](docs/24_billing_and_payment_sop.md)
+15. **직장인 겸업 안전 세무 가이드**: [`docs/18_tax_and_business_registration_guide.md`](docs/18_tax_and_business_registration_guide.md)
+16. **무소음 청소 매뉴얼**: [`docs/10_silent_villa_cleaning.md`](docs/10_silent_villa_cleaning.md)
+17. **전체 사업계획서 인덱스**: [`docs/README.md`](docs/README.md)

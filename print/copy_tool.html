@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 마케팅 카피 런처 — 1초 복사기</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+      --carrot: #ff6f0f;
+      --naver: #03c75a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--slate-900);
+      color: #f8fafc;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .top-header {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-back {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-back:hover {
+      color: #2dd4bf;
+    }
+    .top-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+    }
+    .badge-doc {
+      background: rgba(255, 111, 15, 0.2);
+      border: 1px solid var(--carrot);
+      color: #ff914d;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .hero-summary {
+      background: linear-gradient(135deg, rgba(255, 111, 15, 0.2) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1.5px solid rgba(255, 111, 15, 0.5);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .hero-summary h1 {
+      font-size: 19px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .hero-summary p {
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+
+    .sec-title {
+      font-size: 15.5px;
+      font-weight: 800;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sec-title.carrot { color: #ff914d; }
+    .sec-title.naver { color: #2dd4bf; }
+    .sec-title.sms { color: #38bdf8; }
+
+    .copy-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .copy-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .copy-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: white;
+    }
+    .btn-copy {
+      background: var(--primary);
+      color: white;
+      border: none;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.2s;
+    }
+    .btn-copy:active {
+      transform: scale(0.96);
+    }
+    .btn-copy.done {
+      background: var(--emerald);
+    }
+    .copy-box {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 180px;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="top-header">
+      <a href="index.html" class="btn-back">‹ 현장 HQ</a>
+      <div class="top-title">마케팅 카피 런처</div>
+      <span class="badge-doc">1초 복사</span>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero-summary">
+      <h1>📋 온라인 입점 & 고객 문자 1초 복사기</h1>
+      <p>터치 한 번으로 본문을 복사하여 당근마켓, 네이버, 카톡에 바로 붙여넣으세요.</p>
+    </div>
+
+    <!-- 1. 당근마켓 -->
+    <div class="sec-title carrot">🥕 당근마켓 비즈프로필 & 첫 피드 원고</div>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <div class="copy-title">당근 비즈프로필 소개글</div>
+        <button class="btn-copy" onclick="copyText('carrotBio', this)">📋 복사하기</button>
+      </div>
+      <div class="copy-box" id="carrotBio">안녕하세요! 대치동 주민 여러분.
+용역 알바 없는 프리미엄 정기 계단관리 전문 [하이지아(Hygeia) 대치본점] 대표입니다. ✨
+
+대치동에서 직접 거주하며 우리 동네 빌라와 상가 건물을 "내 집처럼" 책임지고 관리합니다.
+
+🚫 5분 만에 걸레만 젓고 사라지는 유령 청소에 실망하셨나요?
+🚫 새벽 모터 청소기 소음으로 입주민 민원에 시달리셨나요?
+🚫 우편함에 넘쳐나는 불법 전단지와 스티커 끈끈이가 답답하셨나요?
+
+하이지아가 빌라 관리의 기준을 확실하게 바꿔드립니다!
+
+━━━━━━━━━━━━━━━━━━━━
+🛡️ [하이지아 대치본점 4대 안심 약속]
+━━━━━━━━━━━━━━━━━━━━
+1. 🤫 소음 0dB 무소음 케어: 모터 청소기 일체 미사용, 정전기·극세사 흡착 청소로 새벽 수면 보장!
+2. 📸 매회 카톡 4컷 전/후 사진 보고: 완료 사진 실시간 전송!
+3. 🛡️ 1억 원 영업배상책임보험: 시설물 훼손 100% 원상복구 보증!
+4. 💡 건물 시설 하자 무료 점검: 센서등 전구 나감 등 발견 즉시 제보!
+
+💰 [표준 관리 단가]
+• 4층 빌라 (주거형): 월 70,000원 (회당 17,500원꼴)
+• 5층 빌라 / 상가주택: 월 80,000원 (회당 20,000원꼴)
+
+🎁 [단골 특전] "1개 층 무료 시범 청소 (비용 0원)"를 먼저 해드립니다!
+
+💬 채팅 문의 또는 직통 전화(010-XXXX-XXXX)로 편하게 말씀해 주세요!
+🌐 공식 웹사이트: https://hygeia-stairs.vercel.app</div>
+    </div>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <div class="copy-title">당근 첫 소식(피드) 이벤트 원고</div>
+        <button class="btn-copy" onclick="copyText('carrotFeed', this)">📋 복사하기</button>
+      </div>
+      <div class="copy-box" id="carrotFeed">[대치동 임대인 필독] 용역 알바 없는 프리미엄 계단청소, 1개 층 무료로 먼저 닦아드립니다!
+
+대치동 빌라·상가 소유주 임대인분들, 안녕하십니까!
+대치동 골목길 정기 계단관리를 대표가 직접 책임지는 [하이지아]입니다.
+
+매달 청소비는 나가는데 계단 모서리 때가 그대로 남아있나요?
+하이지아는 "대치동 주민인 대표"가 매주 직접 방문하여 장인 정신으로 관리합니다.
+
+✨ [당근 이웃 한정 1개 층 무료 시범 이벤트] ✨
+돈부터 내지 마세요! 
+임대인분 건물의 [1층 로비 + 계단 1개 층]을 비용 1원도 안 받고 무료로 반짝반짝 광택을 내드립니다.
+마음에 안 드시면 그냥 끝내셔도 100% 무료!
+
+📌 신청 방법: 아래 [채팅 문의] 클릭 후 건물 위치 + 층수 + 연락처를 남겨주세요.
+📞 대표 직통 상담: 010-XXXX-XXXX
+🌐 공식 웹사이트: https://hygeia-stairs.vercel.app</div>
+    </div>
+
+    <!-- 2. 네이버 스마트플레이스 -->
+    <div class="sec-title naver">🟢 네이버 스마트플레이스 등록 정보</div>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <div class="copy-title">네이버 상세 설명글</div>
+        <button class="btn-copy" onclick="copyText('naverDesc', this)">📋 복사하기</button>
+      </div>
+      <div class="copy-box" id="naverDesc">대치동 거주 대표 직접 관리 | 무소음 새벽 정기 케어 | 매회 카톡 4컷 전/후 사진 안심 보고 | 1억 원 영업배상책임보험 가입.
+
+강남구 대치동(한티역, 선릉역, 대치사거리) 빌라, 다세대주택, 상가 정기 계단청소 전문 하이지아입니다. 
+용역 알바를 쓰지 않고 대표가 직접 현장을 책임 관리하며, 모터 청소기를 쓰지 않는 0dB 무소음 극세사 흡착 방식으로 세입자 수면을 보장합니다.
+
+현관 유리 손지문 제거, 전 층 대리석 계단 먼지 흡착, 계단 손잡이 에탄올 살균 소독, 필로티 주차장 담배꽁초 수거까지 철저하게 케어해 드립니다. 
+
+[부담 없는 혜택] 1개 층 무료 시범 청소를 먼저 받아보시고 결정하세요!
+문의: 010-XXXX-XXXX
+공식 웹사이트: https://hygeia-stairs.vercel.app</div>
+    </div>
+
+    <!-- 3. 고객 응대 매크로 -->
+    <div class="sec-title sms">📱 고객 문의 응대 카톡/문자 템플릿</div>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <div class="copy-title">① 첫 문의 감사 & 위치 확인 문자</div>
+        <button class="btn-copy" onclick="copyText('smsIntro', this)">📋 복사하기</button>
+      </div>
+      <div class="copy-box" id="smsIntro">[하이지아 대치본점]
+사장님, 안녕하세요! 대치동 프리미엄 정기 계단관리 하이지아 대표 OOO입니다.
+소중한 건물 관리 문의를 남겨주셔서 진심으로 감사드립니다.
+
+문의하신 건물의 위치와 대략적인 층수(예: 4층 빌라, 엘리베이터 유무)를 알려주시면 정확한 표준 단가와 맞춤 관리 방식을 5분 안에 안내해 드리겠습니다.
+
+• 대표 직통: 010-XXXX-XXXX
+• 공식 사이트: https://hygeia-stairs.vercel.app</div>
+    </div>
+
+    <div class="copy-card">
+      <div class="copy-head">
+        <div class="copy-title">② 견적 및 무료 시범 제안 문자</div>
+        <button class="btn-copy" onclick="copyText('smsQuote', this)">📋 복사하기</button>
+      </div>
+      <div class="copy-box" id="smsQuote">[하이지아 정기관리 견적 안내]
+사장님, 요청하신 건물 관리 견적 안내드립니다.
+
+• 대상 건물: 대치동 OOO 빌라 (4층 기준)
+• 방문 주기: 주 1회 정기 방문 (월 4회)
+• 정기 관리비: 월 70,000원 (VAT 별도)
+• 관리 범위: 1층 공동현관 유리 광택, 전 층 계단 극세사 무소음 청소, 난간 손잡이 무취 살균, 주차장 꽁초 수거, 매회 완료 카톡 4컷 사진 전송
+
+★ 특별 제안: 돈부터 내지 마세요! 
+다음 주 O요일에 [1층 로비 + 계단 1개 층]을 비용 1원도 안 받고 무료로 싹 닦아드릴 테니 상태만 먼저 눈으로 확인해 보세요.
+무료 시범 진행을 원하시면 편하게 "시범 신청"이라고 답장 남겨주세요!</div>
+    </div>
+
+  </div>
+
+  <script>
+    function copyText(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = '✅ 복사됨!';
+        btn.classList.add('done');
+        setTimeout(() => {
+          btn.innerText = orig;
+          btn.classList.remove('done');
+        }, 2000);
+      }).catch(() => {
+        alert('복사에 실패했습니다. 수동으로 텍스트를 선택해 복사해 주세요.');
+      });
+    }
+  </script>
+</body>
+</html>
