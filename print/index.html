@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>하이지아(Hygeia) 모바일 현장 사령탑 (Field HQ)</title>
+  <script>
+    // URL 끝이 /print 로 끝나고 슬래시가 없는 경우, 하위 상대경로 해석 오류 방지를 위해 /print/ 로 보정
+    if (window.location.pathname.endsWith('/print')) {
+      window.location.replace(window.location.pathname + '/' + window.location.search + window.location.hash);
+    }
+  </script>
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
