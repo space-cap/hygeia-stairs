@@ -81,10 +81,10 @@
 **읽는 순서 (실전 로드맵)**:
 1. **[09 린 스타트 계획](09_lean_start_plan.md)**: 전체적인 사이드잡 목표와 월별 수익 구조 파악
 2. **[16 초기 장비 구매 가이드](16_equipment_purchase_guide.md)**: 오늘 바로 주문할 18만 원 장비 확정
-3. **[12 인쇄용 전단지 디자인](12_flier_design.md)**: 주말 배포용 전단지 30~50매 출력 준비
-4. **[15 임장 & 고객관리 장부](15_field_crm_template.md)**: 클립보드에 끼워 주말 대치동 도보 임장 시작
+3. **[12 인쇄용 전단지 디자인](12_flier_design.md)**: 주말 배포용 전단지 30~50매 출력 준비 → **[📄 전단지 즉시 인쇄 웹서식](../print/flier.html)**
+4. **[15 임장 & 고객관리 장부](15_field_crm_template.md)**: 클립보드에 끼워 주말 대치동 도보 임장 시작 → **[📋 도보 임장 기록부 인쇄 웹서식](../print/field_crm.html)**
 5. **[10 무소음 빌라 청소 SOP](10_silent_villa_cleaning.md)** & **[11 경쟁사 분석](11_competitor_flier_analysis.md)**: 25분 스피드 루틴 숙지
-6. **[13 현장 표준계약서](13_standard_contract_template.md)** & **[14 카톡 보고 템플릿](14_inspection_checklist_and_report.md)**: 첫 계약 체결 및 보고에 사용
+6. **[13 현장 표준계약서](13_standard_contract_template.md)** & **[14 카톡 보고 템플릿](14_inspection_checklist_and_report.md)**: 첫 계약 체결 및 보고에 사용 → **[📝 현장 표준계약서 인쇄 웹서식](../print/contract.html)**
 7. (향후 전업 확장 시): 02, 03, 04, 05, 06, 07, 08 참조
 
 ### 추가로 확인하면 정밀해지는 정보

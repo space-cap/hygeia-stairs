@@ -9,7 +9,9 @@
 ```
 hygeia-stairs/
 ├── print/              # [실전 출력물] 인쇄용 전단지, 서식 HTML
-│   └── flier.html      # A4 즉시 인쇄용 전단지 웹페이지
+│   ├── flier.html      # A4 즉시 인쇄용 전단지 웹페이지
+│   ├── contract.html   # 현장 체결용 A4 1장 표준계약서 인쇄본
+│   └── field_crm.html  # 대치동 도보 임장 기록부 A4 가로 인쇄본
 ├── docs/               # [사업 계획 및 실전 매뉴얼]
 │   ├── README.md       # 전체 사업계획서 목차 및 읽는 순서
 │   ├── 09_lean_start_plan.md           # 300만원 자본금 사이드잡 린 스타트 계획
@@ -28,7 +30,10 @@ hygeia-stairs/
 
 ## 🚀 빠른 시작 가이드 (Quick Start)
 
-1. **전단지 바로 출력**: [`print/flier.html`](print/flier.html)을 더블 클릭하여 연 뒤 상단 **[A4 즉시 인쇄]** 클릭
+1. **실전 출력물 원클릭 인쇄**:
+   - 📄 **홍보 전단지**: [`print/flier.html`](print/flier.html) (A4 세로 출력, 30~50매)
+   - 📝 **현장 표준계약서**: [`print/contract.html`](print/contract.html) (A4 세로 1장 출력, 3매)
+   - 📋 **도보 임장 기록부**: [`print/field_crm.html`](print/field_crm.html) (A4 가로 1장 출력, 2매)
 2. **실전 실행 계획**: [`docs/09_lean_start_plan.md`](docs/09_lean_start_plan.md)
 3. **무소음 청소 매뉴얼**: [`docs/10_silent_villa_cleaning.md`](docs/10_silent_villa_cleaning.md)
 4. **전체 사업계획서 인덱스**: [`docs/README.md`](docs/README.md)
