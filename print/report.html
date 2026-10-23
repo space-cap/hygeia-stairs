@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 카톡 안심 4컷 사진 보고서 생성기</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --success: #10b981;
+      --amber: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--slate-800);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* 상단 헤더 */
+    header {
+      background: linear-gradient(135deg, var(--slate-900), var(--slate-800));
+      color: #ffffff;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .brand-name {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .btn-header {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* 컨테이너 */
+    .container {
+      max-width: 800px;
+      margin: 16px auto;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--slate-200);
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 폼 입력창 */
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+      .input-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 8px;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+
+    /* 사진 업로드 4컷 그리드 */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (max-width: 480px) {
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .photo-box {
+      border: 2px dashed var(--slate-200);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      background: var(--slate-50);
+      position: relative;
+      cursor: pointer;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      overflow: hidden;
+    }
+    .photo-box:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .photo-box input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .photo-label-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.8);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+    .photo-preview {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: none;
+    }
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--slate-600);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .photo-placeholder .icon {
+      font-size: 24px;
+    }
+
+    /* 액션 버튼 그룹 */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .btn-kakao {
+      background: #fee500;
+      color: #191919;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(254, 229, 0, 0.4);
+      transition: transform 0.1s;
+    }
+    .btn-kakao:active {
+      transform: scale(0.98);
+    }
+    .btn-print {
+      background: var(--slate-900);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* 토스트 알림 */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(15, 23, 42, 0.95);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* 인쇄 전용 A4 서식 */
+    .print-sheet {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      header, .container, .toast {
+        display: none !important;
+      }
+      .print-sheet {
+        display: block !important;
+        max-width: 210mm;
+        margin: 0 auto;
+        padding: 12mm 15mm;
+        color: #0f172a;
+      }
+      .print-header {
+        border-bottom: 2px solid #0f172a;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .print-photos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 15px 0;
+      }
+      .print-photo-item {
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        overflow: hidden;
+        text-align: center;
+      }
+      .print-photo-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+      .print-photo-item .caption {
+        background: #f8fafc;
+        padding: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        border-top: 1px solid #cbd5e1;
+      }
+      .print-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11px;
+        margin-top: 12px;
+      }
+      .print-table th, .print-table td {
+        border: 1px solid #cbd5e1;
+        padding: 6px 10px;
+      }
+      .print-table th {
+        background: #f1f5f9;
+        width: 20%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <div class="brand-title">
+      <span class="brand-badge">대치본점</span>
+      <span class="brand-name">하이지아 4컷 사진 보고서</span>
+    </div>
+    <button class="btn-header" onclick="window.print()">
+      🖨️ A4 출력
+    </button>
+  </header>
+
+  <!-- 메인 폼 컨테이너 -->
+  <div class="container">
+    
+    <!-- 1. 건물 및 일정 기본 정보 -->
+    <div class="card">
+      <div class="section-title">
+        📋 관리 건물 정보 입력
+      </div>
+      
+      <div class="input-row">
+        <div class="form-group">
+          <label class="form-label">건물명 (또는 호수)</label>
+          <input type="text" id="buildingName" class="form-control" value="대치 현대빌" placeholder="예: 대치 현대빌">
+        </div>
+        <div class="form-group">
+          <label class="form-label">관리 일자 및 회차</label>
+          <input type="text" id="reportDate" class="form-control" value="2026년 10월 4주차 정기관리">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">현장 특이사항 / 조치 메모</label>
+        <textarea id="memoText" class="form-control" rows="2" placeholder="예: 1층 우편함 전단지 정리 및 주차장 낙엽/꽁초 수거 완료. 3층 복도 택배 상자 안전 정리.">1층 우편함 불법 전단지 전량 수거 및 공동현관 유리 손지문 살균 세척 완료. 계단 손잡이 살균 소독 및 주차장 꽁초 정리 마쳤습니다.</textarea>
+      </div>
+    </div>
+
+    <!-- 2. 골든 4컷 사진 촬영/등록 -->
+    <div class="card">
+      <div class="section-title">
+        📸 골든 4컷 현장 사진 첨부
+      </div>
+      <p style="font-size: 12px; color: var(--slate-600); margin-bottom: 12px;">
+        각 영역을 터치하여 스마트폰 카메라로 촬영하거나 갤러리 사진을 선택하세요.
+      </p>
+
+      <div class="photo-grid">
+        <!-- 1컷 -->
+        <div class="photo-box" id="box1">
+          <span class="photo-label-tag">1컷. 현관 유리·도어락</span>
+          <input type="file" accept="image/*" onchange="previewImage(event, 'img1', 'box1')">
+          <img id="img1" class="photo-preview">
+          <div class="photo-placeholder" id="ph1">
+            <span class="icon">🚪</span>
+            <span>현관유리 / 로비폰 터치</span>
+          </div>
+        </div>
+
+        <!-- 2컷 -->
+        <div class="photo-box" id="box2">
+          <span class="photo-label-tag">2컷. 계단 및 바닥 광택</span>
+          <input type="file" accept="image/*" onchange="previewImage(event, 'img2', 'box2')">
+          <img id="img2" class="photo-preview">
+          <div class="photo-placeholder" id="ph2">
+            <span class="icon">🪜</span>
+            <span>계단 전체 하향 뷰 터치</span>
+          </div>
+        </div>
+
+        <!-- 3컷 -->
+        <div class="photo-box" id="box3">
+          <span class="photo-label-tag">3컷. 난간 손잡이 소독</span>
+          <input type="file" accept="image/*" onchange="previewImage(event, 'img3', 'box3')">
+          <img id="img3" class="photo-preview">
+          <div class="photo-placeholder" id="ph3">
+            <span class="icon">✨</span>
+            <span>핸드레일 / 창틀 터치</span>
+          </div>
+        </div>
+
+        <!-- 4컷 -->
+        <div class="photo-box" id="box4">
+          <span class="photo-label-tag">4컷. 주차장·분리수거</span>
+          <input type="file" accept="image/*" onchange="previewImage(event, 'img4', 'box4')">
+          <img id="img4" class="photo-preview">
+          <div class="photo-placeholder" id="ph4">
+            <span class="icon">🅿️</span>
+            <span>주차장 꽁초 수거 완료 뷰</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 액션 버튼 -->
+      <div class="action-group">
+        <button class="btn-kakao" onclick="copyKakaoReport()">
+          💬 카카오톡 전송용 보고 텍스트 1초 복사
+        </button>
+        <button class="btn-print" onclick="prepareAndPrint()">
+          📄 A4 사진 보고서 인쇄 / PDF 저장
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 인쇄용 A4 서식 -->
+  <div class="print-sheet">
+    <div class="print-header">
+      <div>
+        <h1 style="font-size: 22px; font-weight: 900;">하이지아(Hygeia) 정기관리 완료 보고서</h1>
+        <p style="font-size: 11px; color: #555;">대치동 거주 대표 직접 관리 | 무소음 새벽 정기 케어</p>
+      </div>
+      <div style="text-align: right; font-size: 12px; font-weight: 700;">
+        관리사업자: 하이지아 대치본점<br>
+        대표 직통: 010-XXXX-XXXX
+      </div>
+    </div>
+
+    <table class="print-table">
+      <tr>
+        <th>관리 대상 건물</th>
+        <td id="p_name">대치 현대빌</td>
+        <th>관리 일시</th>
+        <td id="p_date">2026년 10월 4주차</td>
+      </tr>
+      <tr>
+        <th>현장 조치 내역</th>
+        <td colspan="3" id="p_memo">특이사항 없음</td>
+      </tr>
+    </table>
+
+    <div class="print-photos">
+      <div class="print-photo-item">
+        <img id="p_img1" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&q=80" alt="현관">
+        <div class="caption">[1] 1층 공동현관 유리창 및 도어락 살균</div>
+      </div>
+      <div class="print-photo-item">
+        <img id="p_img2" src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=400&q=80" alt="계단">
+        <div class="caption">[2] 전 층 계단 정전기/극세사 건·반건식 청결 관리</div>
+      </div>
+      <div class="print-photo-item">
+        <img id="p_img3" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80" alt="난간">
+        <div class="caption">[3] 계단 난간 손잡이 에탄올 살균 소독</div>
+      </div>
+      <div class="print-photo-item">
+        <img id="p_img4" src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=400&q=80" alt="주차장">
+        <div class="caption">[4] 1층 주차장 담배꽁초 및 낙엽 수거 완료</div>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; color: #666; text-align: center; margin-top: 15px; border-top: 1px dashed #cbd5e1; padding-top: 8px;">
+      하이지아는 매회 청소 완료 즉시 사진 보고를 원칙으로 합니다. 시설물 불편 사항은 대표 번호로 연락 주시면 24시간 내 즉시 처리해 드립니다.
+    </div>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div class="toast" id="toastMsg">
+    ✅ 카톡 보고서 텍스트가 복사되었습니다!
+  </div>
+
+  <script>
+    // 이미지 미리보기 처리
+    function previewImage(event, imgId, boxId) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById(imgId);
+          img.src = e.target.result;
+          img.style.display = 'block';
+
+          // 플레이스홀더 숨김
+          const num = imgId.replace('img', '');
+          document.getElementById('ph' + num).style.display = 'none';
+
+          // 인쇄용 이미지도 연동
+          document.getElementById('p_img' + num).src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // 카카오톡 보고 텍스트 복사
+    function copyKakaoReport() {
+      const name = document.getElementById('buildingName').value.trim() || '대치동 빌라';
+      const date = document.getElementById('reportDate').value.trim();
+      const memo = document.getElementById('memoText').value.trim();
+
+      const text = `[하이지아(Hygeia) 정기관리 완료 보고]
+
+안녕하십니까, 임대인 사장님!
+대치동 거주 대표가 직접 관리하는 하이지아 청소입니다.
+
+금일 [${name}]의 ${date} 작업을 이상 없이 완료하여 사진과 함께 보고드립니다.
+
+■ 금일 주요 조치 사항:
+1. 1층 공동현관 유리창 손지문 제거 및 도어락 살균
+2. 전 층 계단 먼지/이물질 정전기 밀대 포집 및 모서리 케어
+3. 계단 난간 손잡이(핸드레일) 소독 훔치기
+4. 1층 주차장 담배꽁초, 낙엽 쓰레기 정리
+5. 특이사항: ${memo}
+
+현장에 불편하신 점이나 추가 요청사항이 있으시면 언제든 편하게 말씀해 주십시오. 
+항상 쾌적하고 가치 있는 건물을 위해 최선을 다하겠습니다. 감사합니다!
+
+- 하이지아 대치본점 대표 배상 (010-XXXX-XXXX)`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✅ 카톡 보고서 텍스트 복사 완료! 채팅창에 붙여넣으세요.');
+      }).catch(err => {
+        alert('복사 중 오류가 발생했습니다.');
+      });
+    }
+
+    // 인쇄 준비 후 창 띄우기
+    function prepareAndPrint() {
+      document.getElementById('p_name').textContent = document.getElementById('buildingName').value;
+      document.getElementById('p_date').textContent = document.getElementById('reportDate').value;
+      document.getElementById('p_memo').textContent = document.getElementById('memoText').value;
+      window.print();
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastMsg');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
