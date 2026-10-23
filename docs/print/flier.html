@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하이지아(Hygeia) 프리미엄 계단청소 - 전단지 A4</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      color: #1e293b;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 화면 조작용 툴바 (인쇄 시 자동 숨김) */
+    .screen-toolbar {
+      width: 100%;
+      max-width: 210mm;
+      padding: 12px 20px;
+      margin: 15px 0 10px;
+      background: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .screen-toolbar span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .print-btn {
+      background: #0d9488;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .print-btn:hover {
+      background: #0f766e;
+    }
+
+    /* A4 규격 시트 컨테이너 */
+    .a4-sheet {
+      width: 210mm;
+      height: 297mm;
+      background: #ffffff;
+      padding: 12mm 14mm;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* 외곽 메인 테두리 */
+    .inner-border {
+      border: 3.5px solid #0f766e;
+      border-radius: 14px;
+      height: 100%;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* 헤더 영역 */
+    .header {
+      text-align: center;
+      border-bottom: 2px dashed #cbd5e1;
+      padding-bottom: 12px;
+    }
+    .badge {
+      display: inline-block;
+      background: #f0fdfa;
+      color: #0f766e;
+      border: 1.5px solid #0d9488;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 14.5px;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .main-title {
+      font-size: 34px;
+      font-weight: 900;
+      color: #0f766e;
+      margin: 4px 0 6px;
+      letter-spacing: -1px;
+    }
+    .sub-copy {
+      font-size: 16px;
+      font-weight: 600;
+      color: #475569;
+      margin: 0;
+      letter-spacing: -0.5px;
+    }
+
+    /* 4대 안심 약속 그리드 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .feature-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4.5px solid #0f766e;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .feature-card .card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f766e;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .feature-card .card-desc {
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.35;
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    /* 요금표 */
+    .price-section {
+      margin: 8px 0;
+    }
+    .section-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 6px 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+    .price-table th {
+      background: #0f766e;
+      color: white;
+      padding: 7px 6px;
+      font-weight: 700;
+      border: 1px solid #0f766e;
+      text-align: center;
+    }
+    .price-table td {
+      border: 1px solid #cbd5e1;
+      padding: 7px 8px;
+      text-align: center;
+      color: #1e293b;
+    }
+    .price-table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .price-highlight {
+      font-weight: 800;
+      color: #0f766e;
+      font-size: 14px;
+    }
+    .table-subtext {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* 청소 범위 박스 */
+    .scope-box {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      margin: 8px 0;
+      color: #334155;
+    }
+    .scope-box strong {
+      color: #0f766e;
+      font-size: 12.5px;
+    }
+
+    /* 무료 시범 이벤트 배너 */
+    .event-banner {
+      background: #fffbeb;
+      border: 2px solid #f59e0b;
+      border-radius: 10px;
+      padding: 10px 14px;
+      text-align: center;
+      margin: 8px 0;
+    }
+    .event-badge {
+      display: inline-block;
+      background: #f59e0b;
+      color: white;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 11.5px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .event-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: #b45309;
+      margin: 2px 0 4px;
+      letter-spacing: -0.5px;
+    }
+    .event-desc {
+      font-size: 12.5px;
+      color: #78350f;
+      margin: 0;
+      font-weight: 600;
+      word-break: keep-all;
+    }
+
+    /* 하단 푸터 (연락처/브랜드) */
+    .footer {
+      background: #0f766e;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .footer-left .brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .footer-left .branch-info {
+      font-size: 11px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+    .footer-right {
+      text-align: right;
+    }
+    .footer-right .phone-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #ccfbf1;
+      display: block;
+      margin-bottom: 1px;
+    }
+    .footer-right .phone-number {
+      font-size: 24px;
+      font-weight: 900;
+      color: #fef08a;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+
+    /* 인쇄 전용 스타일 */
+    @media print {
+      body {
+        background-color: transparent;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .a4-sheet {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 화면용 조작 툴바 (인쇄 시 숨겨짐) -->
+  <div class="screen-toolbar no-print">
+    <span>💡 <b>A4 인쇄 팁:</b> 'A4 즉시 인쇄' 버튼을 누른 후, 인쇄 옵션에서 <b>'배경 그래픽 포함'</b>을 꼭 체크해 주세요!</span>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ A4 즉시 인쇄 (Ctrl+P)
+    </button>
+  </div>
+
+  <!-- A4 단면 인쇄 시트 -->
+  <div class="a4-sheet">
+    <div class="inner-border">
+      
+      <!-- 상단 헤더 -->
+      <div class="header">
+        <div class="badge">물 뿌리는 미끄러운 옛날 청소는 이제 그만!</div>
+        <h1 class="main-title">하이지아(Hygeia) 프리미엄 계단청소</h1>
+        <p class="sub-copy">출근길에 기분 좋게 마주치는 호텔 같은 대치동 계단실</p>
+      </div>
+
+      <!-- 4대 안심 약속 -->
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="card-title">📸 카톡 사진 안심 보고</div>
+          <p class="card-desc">청소 완료 직후 4컷 전/후 사진을 임대인 휴대폰으로 투명하게 전송해 드립니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-title">🤫 새벽 무소음 케어</div>
+          <p class="card-desc">모터 진동 없는 독일식 정전기 포집 기술로 입주민 출근 전에 뽀송하게 끝냅니다.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-title">🛡️ 1억 원 영업배상보험</div>
+          <p class="card-desc">시설물 파손 및 보행 미끄럼 사고에 대비해 현대해상/삼성화재 1억 보험 가입.</p>
+        </div>
+        <div class="feature-card">
+          <div class="card-title">👤 대치동 대표 직접 관리</div>
+          <p class="card-desc">하청이나 초보 알바 없이 4년 현장 경력의 대표가 100% 책임 시공합니다.</p>
+        </div>
+      </div>
+
+      <!-- 실속 요금표 -->
+      <div class="price-section">
+        <div class="section-title">📊 대치동 실속 정기 관리 요금표 (4~5층 기준)</div>
+        <table class="price-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">건물 유형</th>
+              <th style="width: 20%;">방문 주기</th>
+              <th style="width: 25%;">월 관리비</th>
+              <th style="width: 30%;">주요 관리 내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="2"><b>빌라 / 다세대</b><br><span class="table-subtext">(4~5층, 8세대 기준)</span></td>
+              <td>주 1회 (월 4회)</td>
+              <td><span class="price-highlight">월 7만 ~ 9만 원</span></td>
+              <td>계단, 복도, 창틀, 로비, 우편함, 분리수거</td>
+            </tr>
+            <tr>
+              <td>주 2회 (월 8회)</td>
+              <td><span class="price-highlight">월 13만 ~ 16만 원</span></td>
+              <td>주 2회 광택 케어 + 공동현관 발수 코팅</td>
+            </tr>
+            <tr>
+              <td rowspan="2"><b>상가 / 근린빌딩</b><br><span class="table-subtext">(4~5층 중소형)</span></td>
+              <td>주 1회 (월 4회)</td>
+              <td><span class="price-highlight">월 10만 ~ 12만 원</span></td>
+              <td>공용화장실 점검 + 계단실 바닥 + 로비</td>
+            </tr>
+            <tr>
+              <td>주 2회 (월 8회)</td>
+              <td><span class="price-highlight">월 18만 ~ 22만 원</span></td>
+              <td>출근 전 완결 + 화장실 세정 + 쓰레기 배출</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 청소 범위 상세 -->
+      <div class="scope-box">
+        <strong>[상세 관리 범위]</strong> 공동현관 유리문 손자국·유분 제거 코팅 <b>|</b> 전 층 계단·복도 미세먼지 포집 & 살균 세정 <b>|</b> 손잡이 난간 소독 <b>|</b> 창틀 먼지 및 거미줄 제거 <b>|</b> 우편함 광고 스티커 제거 <b>|</b> 1층 주차장 바닥 꽁초 수거 <b>|</b> 분리수거함 주변 정돈
+      </div>
+
+      <!-- 무료 시범 이벤트 -->
+      <div class="event-banner">
+        <span class="event-badge">대치동 오픈 기념 특별 혜택</span>
+        <div class="event-title">"1개 층 무료 시범 청소 & 전/후 사진 비교"를 신청하세요!</div>
+        <p class="event-desc">비용 부담 없이 결과만 눈으로 확인하신 후 천천히 결정하시면 됩니다. (문자 신청 환영)</p>
+      </div>
+
+      <!-- 하단 연락처 푸터 -->
+      <div class="footer">
+        <div class="footer-left">
+          <div class="brand-name">하이지아 (Hygeia) 대치본점</div>
+          <div class="branch-info">서울시 강남구 대치동 직영 관리 | 영업배상책임보험 1억 원 가입</div>
+        </div>
+        <div class="footer-right">
+          <span class="phone-label">상담 문의 (문자 / 전화)</span>
+          <span class="phone-number">010-XXXX-XXXX</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
