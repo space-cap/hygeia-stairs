@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하이지아(Hygeia) 프리미엄 명함 디자인 - A4 인쇄 및 온라인 발주용</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --gold: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--slate-800);
+      line-height: 1.4;
+      padding: 20px 10px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 화면 조작 컨트롤 바 */
+    .screen-toolbar {
+      width: 100%;
+      max-width: 210mm;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      background: var(--slate-900);
+      color: #f8fafc;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .toolbar-inputs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .toolbar-inputs label {
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+    .toolbar-inputs input {
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+      border: 1px solid var(--slate-700);
+      background: var(--slate-800);
+      color: white;
+      outline: none;
+    }
+    .toolbar-inputs input:focus {
+      border-color: var(--primary);
+    }
+    .btn-print {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .btn-print:hover {
+      background: var(--primary-dark);
+    }
+
+    /* 명함 단품 확대 뷰 (화면 전용) */
+    .preview-section {
+      width: 100%;
+      max-width: 210mm;
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .preview-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .preview-cards-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+
+    /* 명함 표준 규격: 90mm x 50mm */
+    .card-unit {
+      width: 90mm;
+      height: 50mm;
+      background: white;
+      border-radius: 4px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #e2e8f0;
+      padding: 5mm 6mm;
+    }
+
+    /* 명함 앞면 (Front) */
+    .card-front {
+      background: #ffffff;
+    }
+    .front-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .front-brand {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-kr {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .brand-kr span.en {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+    }
+    .brand-sub {
+      font-size: 9px;
+      color: var(--slate-600);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .badge-direct {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .front-middle {
+      margin: auto 0;
+    }
+    .person-name {
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: 1px;
+    }
+    .person-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-left: 6px;
+    }
+
+    .front-bottom {
+      border-top: 1px solid var(--slate-200);
+      padding-top: 3.5mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 8.5px;
+      color: var(--slate-700);
+    }
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .contact-item strong {
+      color: var(--slate-900);
+      font-size: 9.5px;
+    }
+    .loc-tag {
+      font-size: 8px;
+      color: var(--slate-600);
+      background: var(--slate-100);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    /* 명함 뒷면 (Back) */
+    .card-back {
+      background: var(--slate-900);
+      color: white;
+      border: 1px solid var(--slate-900);
+    }
+    .back-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 2mm;
+    }
+    .back-title {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.2px;
+    }
+    .back-sub {
+      font-size: 8px;
+      color: #94a3b8;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 8px;
+      margin: auto 0;
+      font-size: 8px;
+      color: #e2e8f0;
+    }
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .service-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    .back-footer {
+      background: rgba(255, 255, 255, 0.08);
+      margin: 0 -6mm -5mm;
+      padding: 2.5mm 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7.5px;
+    }
+    .back-coupon {
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .back-insure {
+      color: #94a3b8;
+    }
+
+    /* A4 인쇄용 시트 (10장 격자 배치) */
+    .a4-print-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      padding: 15mm 12mm;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .a4-info {
+      font-size: 11px;
+      color: var(--slate-600);
+      margin-bottom: 10mm;
+      text-align: center;
+    }
+    .cards-grid-10 {
+      display: grid;
+      grid-template-columns: repeat(2, 90mm);
+      grid-template-rows: repeat(5, 50mm);
+      gap: 3mm 4mm;
+    }
+
+    /* 인쇄 모드 최적화 */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+      .screen-toolbar, .preview-section {
+        display: none !important;
+      }
+      .a4-print-sheet {
+        box-shadow: none;
+        padding: 0;
+      }
+      .card-unit {
+        box-shadow: none;
+        border: 0.5px solid #cbd5e1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 화면 상단 조작 툴바 -->
+  <div class="screen-toolbar">
+    <div class="toolbar-inputs">
+      <label>대표자 성함: <input type="text" id="inputName" value="홍 길 동" oninput="updateCards()"></label>
+      <label>연락처: <input type="text" id="inputPhone" value="010-XXXX-XXXX" oninput="updateCards()"></label>
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      🖨️ A4 용지 10장 즉시 인쇄
+    </button>
+  </div>
+
+  <!-- 명함 미리보기 섹션 (앞면 / 뒷면) -->
+  <div class="preview-section">
+    <div class="preview-title">
+      <span>🔍 표준 명함 실물 미리보기 (90mm x 50mm 규격)</span>
+      <span style="font-size: 12px; color: var(--primary); font-weight: 600;">※ 오프린트미 / 성원애드피아 즉시 발주 가능 규격</span>
+    </div>
+
+    <div class="preview-cards-wrap">
+      
+      <!-- 앞면 카드 -->
+      <div class="card-unit card-front">
+        <div class="front-top">
+          <div class="front-brand">
+            <div class="brand-kr">하이지아 <span class="en">Hygeia</span></div>
+            <div class="brand-sub">대치본점 프리미엄 건물관리</div>
+          </div>
+          <div class="badge-direct">대표 직접 관리</div>
+        </div>
+
+        <div class="front-middle">
+          <span class="person-name name-target">홍 길 동</span>
+          <span class="person-title">관리대표</span>
+        </div>
+
+        <div class="front-bottom">
+          <div class="contact-list">
+            <div class="contact-item">
+              <span>직통:</span>
+              <strong class="phone-target">010-XXXX-XXXX</strong>
+            </div>
+            <div class="contact-item">
+              <span>위치: 서울시 강남구 대치동</span>
+            </div>
+          </div>
+          <div class="loc-tag">대치동 관내 10분 내 방문</div>
+        </div>
+      </div>
+
+      <!-- 뒷면 카드 -->
+      <div class="card-unit card-back">
+        <div class="back-header">
+          <div class="back-title">하이지아 4대 정기 안심 케어</div>
+          <div class="back-sub">무소음 0dB 새벽 청소</div>
+        </div>
+
+        <div class="service-grid">
+          <div class="service-item">
+            <div class="service-dot"></div>
+            <span>공동현관 유리·도어락 살균</span>
+          </div>
+          <div class="service-item">
+            <div class="service-dot"></div>
+            <span>전 층 계단 먼지·모서리 케어</span>
+          </div>
+          <div class="service-item">
+            <div class="service-dot"></div>
+            <span>계단 핸드레일 에탄올 소독</span>
+          </div>
+          <div class="service-item">
+            <div class="service-dot"></div>
+            <span>1층 주차장 꽁초·낙엽 수거</span>
+          </div>
+        </div>
+
+        <div class="back-footer">
+          <div class="back-coupon">🎁 첫 달 계단 묵은 때 딥클린 무상 제공</div>
+          <div class="back-insure">영업배상책임 1억 가입</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- A4 인쇄용 시트 (앞면 5장 + 뒷면 5장 격자 배치) -->
+  <div class="a4-print-sheet">
+    <div class="a4-info">
+      ✂️ 실선에 맞춰 재단기로 자르시면 지갑에 쏙 들어가는 90mm x 50mm 표준 명함이 됩니다. (A4 1장당 10장)
+    </div>
+
+    <div class="cards-grid-10" id="printGrid">
+      <!-- 자바스크립트로 앞면 5장, 뒷면 5장 자동 생성 -->
+    </div>
+  </div>
+
+  <script>
+    function updateCards() {
+      const name = document.getElementById('inputName').value.trim() || '홍 길 동';
+      const phone = document.getElementById('inputPhone').value.trim() || '010-XXXX-XXXX';
+
+      document.querySelectorAll('.name-target').forEach(el => el.textContent = name);
+      document.querySelectorAll('.phone-target').forEach(el => el.textContent = phone);
+    }
+
+    // A4 인쇄용 10장 생성
+    function initPrintGrid() {
+      const grid = document.getElementById('printGrid');
+      grid.innerHTML = '';
+
+      // 앞면 5개, 뒷면 5개 생성
+      for (let i = 0; i < 5; i++) {
+        // 앞면
+        const front = document.createElement('div');
+        front.className = 'card-unit card-front';
+        front.innerHTML = `
+          <div class="front-top">
+            <div class="front-brand">
+              <div class="brand-kr">하이지아 <span class="en">Hygeia</span></div>
+              <div class="brand-sub">대치본점 프리미엄 건물관리</div>
+            </div>
+            <div class="badge-direct">대표 직접 관리</div>
+          </div>
+          <div class="front-middle">
+            <span class="person-name name-target">홍 길 동</span>
+            <span class="person-title">관리대표</span>
+          </div>
+          <div class="front-bottom">
+            <div class="contact-list">
+              <div class="contact-item"><span>직통:</span> <strong class="phone-target">010-XXXX-XXXX</strong></div>
+              <div class="contact-item"><span>위치: 서울시 강남구 대치동</span></div>
+            </div>
+            <div class="loc-tag">관내 10분 내 방문</div>
+          </div>
+        `;
+
+        // 뒷면
+        const back = document.createElement('div');
+        back.className = 'card-unit card-back';
+        back.innerHTML = `
+          <div class="back-header">
+            <div class="back-title">하이지아 4대 정기 안심 케어</div>
+            <div class="back-sub">무소음 0dB 새벽 청소</div>
+          </div>
+          <div class="service-grid">
+            <div class="service-item"><div class="service-dot"></div><span>공동현관 유리·도어락 살균</span></div>
+            <div class="service-item"><div class="service-dot"></div><span>전 층 계단 먼지·모서리 케어</span></div>
+            <div class="service-item"><div class="service-dot"></div><span>계단 핸드레일 에탄올 소독</span></div>
+            <div class="service-item"><div class="service-dot"></div><span>1층 주차장 꽁초·낙엽 수거</span></div>
+          </div>
+          <div class="back-footer">
+            <div class="back-coupon">🎁 첫 달 묵은 때 딥클린 무료</div>
+            <div class="back-insure">영업배상 1억 가입</div>
+          </div>
+        `;
+
+        grid.appendChild(front);
+        grid.appendChild(back);
+      }
+      updateCards();
+    }
+
+    window.addEventListener('DOMContentLoaded', initPrintGrid);
+  </script>
+</body>
+</html>
