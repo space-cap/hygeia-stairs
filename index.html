@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아(Hygeia) — 대치동 프리미엄 정기 계단청소</title>
+  <meta name="description" content="대치동 거주 대표 직접 관리 | 무소음 새벽 정기 케어 | 매회 카톡 4컷 사진 보고 | 1억 영업배상책임보험 가입. 대치동 빌라·상가 계단청소 전문.">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --primary-subtle: #f0fdfa;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --amber: #f59e0b;
+      --amber-light: #fef3c7;
+      --emerald: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 74px; /* 하단 플로팅 바 공간 */
+    }
+
+    /* 네비게이션 헤더 */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: white;
+    }
+    .logo-badge {
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .logo-text {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .logo-text span {
+      color: #2dd4bf;
+      font-size: 13px;
+      font-weight: 700;
+      margin-left: 4px;
+    }
+    .header-cta-btn {
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .header-cta-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* 레이아웃 공통 */
+    .section-wrap {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--primary);
+      background: var(--primary-light);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--slate-900);
+      line-height: 1.3;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .section-desc {
+      font-size: 15px;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* 1. 히어로 섹션 */
+    .hero {
+      background: linear-gradient(180deg, var(--slate-900) 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 60px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(20, 184, 166, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #5eead4;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero-title span.highlight {
+      color: #2dd4bf;
+    }
+    .hero-subtitle {
+      font-size: 16px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      max-width: 400px;
+      margin: 0 auto 36px;
+    }
+    @media (min-width: 600px) {
+      .hero-cta-group {
+        flex-direction: row;
+        max-width: 100%;
+      }
+    }
+    .btn-hero-primary {
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 16px 28px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(13, 148, 136, 0.4);
+      transition: all 0.2s;
+      width: 100%;
+      text-align: center;
+    }
+    @media (min-width: 600px) {
+      .btn-hero-primary {
+        width: auto;
+      }
+    }
+    .btn-hero-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .btn-hero-call {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      text-decoration: none;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    @media (min-width: 600px) {
+      .btn-hero-call {
+        width: auto;
+      }
+    }
+
+    /* 3대 신뢰 뱃지 */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .trust-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .trust-badge-item strong {
+      color: white;
+    }
+
+    /* 2. 문제 제기 (공감) 섹션 */
+    .pain-section {
+      background: var(--slate-50);
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 650px) {
+      .pain-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .pain-card {
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .pain-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+    .pain-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+    }
+    .pain-text {
+      font-size: 13px;
+      color: var(--slate-600);
+      line-height: 1.5;
+    }
+
+    /* 3. 하이지아 4대 안심 솔루션 */
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 700px) {
+      .solution-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .solution-card {
+      border: 1.5px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 24px;
+      background: white;
+      transition: all 0.2s;
+    }
+    .solution-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+    .solution-num {
+      width: 32px;
+      height: 32px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .solution-name {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--slate-900);
+      margin-bottom: 8px;
+    }
+    .solution-detail {
+      font-size: 13.5px;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
+    /* 4. 비포 / 애프터 시각 갤러리 */
+    .ba-section {
+      background: var(--slate-900);
+      color: white;
+    }
+    .ba-section .section-title {
+      color: white;
+    }
+    .ba-section .section-desc {
+      color: #94a3b8;
+    }
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 600px) {
+      .ba-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .ba-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ba-img-wrap {
+      position: relative;
+      height: 160px;
+      background: #334155;
+    }
+    .ba-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ba-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15, 23, 42, 0.85);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    .ba-info {
+      padding: 14px 16px;
+    }
+    .ba-info-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 4px;
+    }
+    .ba-info-text {
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    /* 5. 투명한 가격표 */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    @media (min-width: 650px) {
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .price-card {
+      border: 2px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 28px 24px;
+      background: white;
+      text-align: center;
+      position: relative;
+    }
+    .price-card.best {
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px -5px rgba(13, 148, 136, 0.15);
+    }
+    .best-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .price-type {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+    }
+    .price-sub {
+      font-size: 12px;
+      color: var(--slate-600);
+      margin-bottom: 20px;
+    }
+    .price-val {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+    .price-val span.won {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .price-per-visit {
+      font-size: 12.5px;
+      color: var(--primary-dark);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .price-features {
+      list-style: none;
+      font-size: 12.5px;
+      color: var(--slate-700);
+      text-align: left;
+      border-top: 1px dashed var(--slate-200);
+      padding-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .price-features li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    /* 프로모션 배너 */
+    .promo-box {
+      max-width: 800px;
+      margin: 24px auto 0;
+      background: var(--amber-light);
+      border: 1.5px solid #fde68a;
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13.5px;
+      color: #92400e;
+    }
+    .promo-icon {
+      font-size: 24px;
+    }
+
+    /* 6. 간편 무료 시범 신청 폼 */
+    .lead-section {
+      background: linear-gradient(180deg, var(--slate-50) 0%, white 100%);
+    }
+    .lead-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border: 2px solid var(--primary);
+      border-radius: 16px;
+      padding: 30px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+      border: 1.5px solid var(--slate-200);
+      border-radius: 8px;
+      background: var(--slate-50);
+      color: var(--slate-900);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      background: white;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .btn-submit-lead {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .btn-submit-lead:hover {
+      background: var(--primary-dark);
+    }
+
+    /* 7. 푸터 */
+    footer {
+      background: var(--slate-900);
+      color: #94a3b8;
+      padding: 40px 20px;
+      font-size: 12px;
+      line-height: 1.8;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    @media (min-width: 600px) {
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .footer-brand {
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: #2dd4bf;
+    }
+
+    /* 모바일 하단 고정 액션 바 (Sticky Floating Bar) */
+    .mobile-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 10px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      gap: 10px;
+      z-index: 99;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+    }
+    .dock-btn {
+      flex: 1;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.1s;
+    }
+    .dock-btn:active {
+      transform: scale(0.98);
+    }
+    .btn-dock-kakao {
+      background: #fee500;
+      color: #191919;
+    }
+    .btn-dock-call {
+      background: var(--primary);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 네비게이션 헤더 -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-badge">대치본점</span>
+        <div class="logo-text">하이지아 <span>Hygeia</span></div>
+      </a>
+      <a href="#applyForm" class="header-cta-btn">무료 시범 신청</a>
+    </div>
+  </header>
+
+  <!-- 1. 히어로 섹션 -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>✨ 대치동 거주 대표 매주 직접 방문 관리</span>
+      </div>
+      <h1 class="hero-title">
+        용역 알바 없는 <span class="highlight">프리미엄 계단관리</span><br>
+        대치동 빌라의 가치를 높입니다
+      </h1>
+      <p class="hero-subtitle">
+        새벽 소음 0dB 무소음 청소 • 매회 카톡 4컷 전/후 사진 보고 • 1억 원 영업배상책임보험 가입<br>
+        지금 신청하시면 <b>1개 층 무료 시범 청소</b>를 먼저 받아보실 수 있습니다.
+      </p>
+      
+      <div class="hero-cta-group">
+        <a href="#applyForm" class="btn-hero-primary">1개 층 무료 시범 신청하기 (비용 0원)</a>
+        <a href="tel:010-XXXX-XXXX" class="btn-hero-call">📞 대표 직통 010-XXXX-XXXX</a>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-badge-item">📍 <strong>대치동 관내 10분 내 출동</strong></div>
+        <div class="trust-badge-item">🛡️ <strong>1억 원 시설물 배상책임</strong></div>
+        <div class="trust-badge-item">🤫 <strong>소음 민원 0건 보증</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 문제 제기 (공감) 섹션 -->
+  <section class="section-wrap pain-section">
+    <div class="section-header">
+      <span class="section-tag">임대인 분들의 고민</span>
+      <h2 class="section-title">혹시 우리 빌라도 이런 문제를 겪고 계신가요?</h2>
+      <p class="section-desc">매달 청소비는 꼬박꼬박 나가는데, 정작 입주민 만족도는 바닥인 이유</p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">🏃‍♂️</div>
+        <div>
+          <div class="pain-title">5분 만에 걸레만 젓고 사라지는 유령 청소</div>
+          <div class="pain-text">지방에서 온 일용직 알바가 대충 훔치고 도망가 버려, 계단 모서리와 창틀 찌든 때는 그대로 남아있습니다.</div>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-icon">📢</div>
+        <div>
+          <div class="pain-title">새벽 모터 청소기 소음 민원</div>
+          <div class="pain-text">시끄러운 진공청소기 모터 소리와 양동이 덜컹거리는 소리에 수험생·직장인 세입자들이 잠을 깨 항의합니다.</div>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-icon">✉️</div>
+        <div>
+          <div class="pain-title">넘쳐나는 불법 전단지와 끈끈이</div>
+          <div class="pain-text">우편함에 대출·배달 전단지가 수북하고, 도어락 위에 덕지덕지 붙은 스티커 끈끈이는 닦아주지도 않습니다.</div>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <div class="pain-icon">❓</div>
+        <div>
+          <div class="pain-title">청소를 했는지 안 했는지 모르는 답답함</div>
+          <div class="pain-text">임대인이 매주 빌라에 직접 와보지 않는 이상, 오늘 청소를 제대로 했는지 확인할 방법이 없습니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 하이지아 4대 안심 솔루션 -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-tag">하이지아의 약속</span>
+      <h2 class="section-title">하이지아가 빌라 관리의 기준을 바꿉니다</h2>
+      <p class="section-desc">대치동 주민인 대표가 직접 매주 장인 정신으로 관리합니다</p>
+    </div>
+
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="solution-num">1</div>
+        <div class="solution-name">소음 0dB 무소음 건·반건식 케어</div>
+        <div class="solution-detail">
+          모터 청소기를 일체 쓰지 않고 독일제 극세사 평면 밀대로 미세먼지를 자석처럼 흡착합니다. 입주민이 곤히 잠든 새벽에도 발소리 하나 없이 조용하게 청소를 마칩니다.
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-num">2</div>
+        <div class="solution-name">매회 카톡 4컷 안심 사진 보고</div>
+        <div class="solution-detail">
+          청소가 끝나는 즉시 1층 현관유리, 전 층 계단, 손잡이 살균, 주차장 꽁초 수거 완료 사진 4장을 임대인 카카오톡으로 실시간 전송합니다. 현장에 오실 필요가 없습니다.
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-num">3</div>
+        <div class="solution-name">1억 원 영업배상책임보험 보증</div>
+        <div class="solution-detail">
+          작업 중 발생할 수 있는 공동현관 도어락, 유리창 파손 및 보행 안전사고에 대해 메리츠화재 1억 원 영업배상책임보험을 통해 100% 원상복구 책임을 집니다.
+        </div>
+      </div>
+
+      <div class="solution-card">
+        <div class="solution-num">4</div>
+        <div class="solution-name">건물 시설 하자 무료 점검 & 제보</div>
+        <div class="solution-detail">
+          청소만 하고 끝내지 않습니다. 복도 센서등 전구 나감, 방충망 훼손, 옥상 문 잠김 등 건물의 이상을 발견하는 즉시 사진과 함께 임대인께 제보해 드립니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 비포 & 애프터 현장 증거 -->
+  <section class="section-wrap ba-section">
+    <div class="section-header">
+      <span class="section-tag" style="background: rgba(255,255,255,0.15); color: #5eead4;">현장 증거</span>
+      <h2 class="section-title">단 1회 관리만으로 건물이 살아납니다</h2>
+      <p class="section-desc">대치동 실제 관리 현장 전/후 비교</p>
+    </div>
+
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-img-wrap">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80" alt="현관유리">
+          <div class="ba-tag">1층 공동현관 유리</div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-info-title">비말·손지문 얼룩 → 거울 광택 복원</div>
+          <div class="ba-info-text">독일산 유리 세정제와 극세사 버핑으로 손지문과 뿌연 매연 때를 100% 제거.</div>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-img-wrap">
+          <img src="https://images.unsplash.com/photo-1541123437800-1bb1317badc2?w=600&q=80" alt="계단">
+          <div class="ba-tag">전 층 대리석 계단</div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-info-title">신발 고무 자국(힐마크) 3초 소멸</div>
+          <div class="ba-info-text">물걸레로 안 지워지는 택배기사 신발 자국과 껌을 대리석 손상 없이 분리 제거.</div>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-img-wrap">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80" alt="난간">
+          <div class="ba-tag">계단 손잡이 (핸드레일)</div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-info-title">피지 유분기 제거 & 에탄올 살균</div>
+          <div class="ba-info-text">입주민 손이 매일 닿는 스테인리스 손잡이 유분 제거 및 99.9% 무취 살균 소독.</div>
+        </div>
+      </div>
+
+      <div class="ba-card">
+        <div class="ba-img-wrap">
+          <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=600&q=80" alt="주차장">
+          <div class="ba-tag">1층 필로티 주차장</div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-info-title">구석 담배꽁초 & 낙엽 완벽 수거</div>
+          <div class="ba-info-text">실외기 뒤편, 기둥 모서리에 버려진 꽁초를 싹 쓸어 담아 건물 외관 품격 유지.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 투명한 표준 가격표 -->
+  <section class="section-wrap">
+    <div class="section-header">
+      <span class="section-tag">정직한 가격</span>
+      <h2 class="section-title">투명하고 합리적인 정기관리 단가표</h2>
+      <p class="section-desc">하청 수수료를 뺀 직영 관리로 강남 최저 수준의 거품 없는 가격을 약속합니다</p>
+    </div>
+
+    <div class="pricing-grid">
+      
+      <!-- 4층 빌라 -->
+      <div class="price-card best">
+        <div class="best-badge">대치동 최다 선택</div>
+        <div class="price-type">빌라 4층 (주거형)</div>
+        <div class="price-sub">주 1회 정기 방문 (월 4회 관리)</div>
+        <div class="price-val">70,000<span class="won">원</span></div>
+        <div class="price-per-visit">회당 약 17,500원꼴 (VAT 별도)</div>
+        <ul class="price-features">
+          <li>1층 공동현관 유리 및 도어락 살균</li>
+          <li>전 층 계단 정전기/극세사 건·반건식 청소</li>
+          <li>계단 난간 손잡이 에탄올 살균 소독</li>
+          <li>1층 주차장 담배꽁초 및 낙엽 수거</li>
+          <li>매회 완료 카톡 4컷 사진 안심 보고</li>
+          <li>1억 원 영업배상책임보험 적용</li>
+        </ul>
+      </div>
+
+      <!-- 5층 빌라 / 상가 -->
+      <div class="price-card">
+        <div class="price-type">빌라 5층 / 상가주택</div>
+        <div class="price-sub">주 1회 정기 방문 (월 4회 관리)</div>
+        <div class="price-val">80,000<span class="won">원</span></div>
+        <div class="price-per-visit">회당 약 20,000원꼴 (VAT 별도)</div>
+        <ul class="price-features">
+          <li>5층 전 층 계단 및 승강기 내부 케어</li>
+          <li>1층 현관 및 우편함 전단지 수거</li>
+          <li>계단 난간 손잡이 살균 소독</li>
+          <li>주차장 및 분리수거장 주변 청결 정리</li>
+          <li>매회 완료 카톡 4컷 사진 안심 보고</li>
+          <li>1억 원 영업배상책임보험 적용</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="promo-box">
+      <span class="promo-icon">🎁</span>
+      <div>
+        <strong>[첫 달 특전 프로모션]</strong> 지금 정기계약 시, 첫 방문에서 <strong>"우편함 불법 스티커 박멸 & 계단 묵은 때 딥클린 서비스(5만 원 상당)"</strong>를 무상으로 제공해 드립니다!
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 간편 무료 시범 신청 폼 -->
+  <section class="section-wrap lead-section" id="applyForm">
+    <div class="section-header">
+      <span class="section-tag">부담 없는 첫걸음</span>
+      <h2 class="section-title">1개 층 무료 시범을 먼저 받아보세요</h2>
+      <p class="section-desc">
+        돈부터 내지 마세요. 대표가 직접 닦아놓은 계단을 눈으로 확인하시고<br>
+        마음에 드실 때 계약하시면 됩니다. (마음에 안 드시면 비용 0원!)
+      </p>
+    </div>
+
+    <div class="lead-card">
+      <form id="leadForm" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">건물 위치 (동/도로명)</label>
+            <input type="text" id="loc" class="form-control" placeholder="예: 대치4동 주민센터 인근" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">건물 층수</label>
+            <select id="floorSelect" class="form-control">
+              <option value="4층 빌라">4층 빌라</option>
+              <option value="5층 빌라">5층 빌라</option>
+              <option value="3층 이하">3층 이하</option>
+              <option value="상가/빌딩">상가/빌딩</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">성함 및 연락처 (휴대폰)</label>
+          <input type="tel" id="phone" class="form-control" placeholder="010-XXXX-XXXX" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">추가 요청사항 (선택)</label>
+          <input type="text" id="req" class="form-control" placeholder="예: 우편함 스티커가 너무 많아요, 주차장 꽁초 등">
+        </div>
+
+        <button type="submit" class="btn-submit-lead">
+          🚀 1개 층 무료 시범 신청하기 (비용 0원)
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">하이지아 (Hygeia) 대치본점</div>
+        <p>대표자: 홍길동 | 사업장: 서울특별시 강남구 대치동 | 업종: 건물일반청소업 (749300)</p>
+        <p>직통 전화: 010-XXXX-XXXX | 상담 가능 시간: 08:00 ~ 21:00 (연중무휴)</p>
+        <p style="margin-top: 6px; color: #64748b;">© 2026 Hygeia Stairs Care. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="print/index.html">🔑 관리자 현장 HQ</a>
+        <a href="#applyForm">무료 시범 신청</a>
+        <a href="tel:010-XXXX-XXXX">전화 연결</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 모바일 하단 고정 액션 바 -->
+  <div class="mobile-dock">
+    <a href="javascript:sendKakao()" class="dock-btn btn-dock-kakao">
+      💬 카톡 1:1 상담
+    </a>
+    <a href="tel:010-XXXX-XXXX" class="dock-btn btn-dock-call">
+      📞 전화 바로걸기
+    </a>
+  </div>
+
+  <script>
+    // 폼 제출 시 카톡/문자 자동 연결 처리
+    function submitForm(e) {
+      e.preventDefault();
+      const loc = document.getElementById('loc').value.trim();
+      const floor = document.getElementById('floorSelect').value;
+      const phone = document.getElementById('phone').value.trim();
+      const req = document.getElementById('req').value.trim() || '없음';
+
+      const msg = `[하이지아 무료 시범 청소 신청]
+• 위치: ${loc}
+• 건물: ${floor}
+• 연락처: ${phone}
+• 요청사항: ${req}`;
+
+      // 클립보드 복사
+      navigator.clipboard.writeText(msg).then(() => {
+        alert('✅ 무료 시범 청소 신청서가 접수되었습니다!\n대표 직통 번호(010-XXXX-XXXX)로 안내 문자를 발송합니다.');
+        location.href = `sms:010-XXXX-XXXX?body=${encodeURIComponent(msg)}`;
+      }).catch(() => {
+        location.href = `sms:010-XXXX-XXXX?body=${encodeURIComponent(msg)}`;
+      });
+    }
+
+    function sendKakao() {
+      const ask = confirm('하이지아 대표 직통 카카오톡 상담으로 연결하시겠습니까?');
+      if (ask) {
+        location.href = 'sms:010-XXXX-XXXX?body=' + encodeURIComponent('[하이지아 계단청소 상담 문의드립니다]');
+      }
+    }
+  </script>
+</body>
+</html>

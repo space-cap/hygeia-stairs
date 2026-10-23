@@ -8,6 +8,7 @@
 
 ```
 hygeia-stairs/
+├── index.html          # 🌐 [공식 웹 랜딩페이지] 고객 유치용 모바일 반응형 원페이지 사이트 (GitHub Pages 무료 호스팅)
 ├── print/              # [실전 출력물 & 모바일 도구]
 │   ├── index.html      # 🚀 [모바일 사령탑] 스마트폰 전용 올인원 현장 런처 HQ
 │   ├── calculator.html # 스마트폰 최적화 모바일 견적기 & 카톡 복사기
@@ -45,9 +46,11 @@ hygeia-stairs/
 
 ## 🚀 빠른 시작 가이드 (Quick Start)
 
-1. **🌟 [모바일 현장 사령탑]**: [`print/index.html`](print/index.html)  
+1. **🌐 [공식 웹 랜딩페이지]**: [`index.html`](index.html)  
+   👉 당근마켓 비즈프로필, 네이버 플레이스, 문자 견적서에 링크를 걸어 고객 신뢰도를 즉시 극대화하는 모바일 최적화 웹사이트입니다. (GitHub Pages 연동 시 `https://space-cap.github.io/hygeia-stairs/`로 무료 공개 가능)
+2. **🌟 [모바일 현장 사령탑]**: [`print/index.html`](print/index.html)  
    👉 **스마트폰 홈 화면에 추가**하여 현장에서 터치 한 번으로 견적기, 사진 보고기, 명함, 스크립트 실행!
-2. **실전 모바일 도구 & 출력물**:
+3. **실전 모바일 도구 & 출력물**:
    - 📱 **모바일 견적기**: [`print/calculator.html`](print/calculator.html) (스마트폰 즉시 견적 & 카톡 복사)
    - 📸 **4컷 사진 보고기**: [`print/report.html`](print/report.html) (청소 완료 후 카톡 보고서 1초 생성)
    - 💳 **양면 표준 명함**: [`print/namecard.html`](print/namecard.html) (현장 배포용 명함 인쇄)
