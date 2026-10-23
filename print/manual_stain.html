@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 포켓 매뉴얼 — 특수 오염 1분 제거 화학 솔루션</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--slate-900);
+      color: #f8fafc;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    /* 상단 공통 바 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .top-header {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-back {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-back:hover {
+      color: #2dd4bf;
+    }
+    .top-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+    }
+    .badge-doc {
+      background: rgba(13, 148, 136, 0.25);
+      border: 1px solid var(--primary);
+      color: #5eead4;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* 4대 매뉴얼 스와이프 탭 */
+    .nav-tabs-wrap {
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 12px 8px;
+      gap: 8px;
+    }
+    .nav-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-tab-item {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 20px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s;
+    }
+    .nav-tab-item.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .hero-summary {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1.5px solid rgba(244, 63, 94, 0.4);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .hero-summary h1 {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .hero-summary p {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .sec-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 절대 금지 경고 박스 */
+    .danger-box {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1.5px solid #ef4444;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 13px;
+      color: #fca5a5;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .danger-box strong {
+      color: #f87171;
+    }
+
+    /* 포켓 툴 그리드 */
+    .pouch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pouch-item {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .pouch-item-name {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #5eead4;
+      margin-bottom: 4px;
+    }
+    .pouch-item-desc {
+      font-size: 11.5px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+
+    /* 오염별 솔루션 카드 */
+    .stain-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .stain-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .stain-name {
+      font-size: 16px;
+      font-weight: 900;
+      color: white;
+    }
+    .stain-time {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.15);
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+    .stain-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+    .stain-steps li {
+      margin-left: 18px;
+    }
+    .stain-steps strong {
+      color: #fde047;
+    }
+    .stain-alert {
+      margin-top: 10px;
+      background: rgba(13, 148, 136, 0.15);
+      border-left: 3px solid var(--primary);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #5eead4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 바 -->
+  <div class="top-bar">
+    <div class="top-header">
+      <a href="index.html" class="btn-back">‹ 현장 HQ</a>
+      <div class="top-title">골목길 포켓 매뉴얼</div>
+      <span class="badge-doc">SOP 20</span>
+    </div>
+
+    <!-- 4대 매뉴얼 스와이프 탭 -->
+    <div class="nav-tabs-wrap">
+      <a href="manual_sales.html" class="nav-tab-item">💬 영업 스크립트</a>
+      <a href="manual_route.html" class="nav-tab-item">🗺️ 대치동 동선</a>
+      <a href="manual_stain.html" class="nav-tab-item active">🧰 오염 제거</a>
+      <a href="manual_checklist.html" class="nav-tab-item">✅ D-Day 체크</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero-summary">
+      <h1>🧰 계단·벽면 특수오염 1분 화학 용해 SOP</h1>
+      <p>자재 손상 0%! 껌, 끈끈이, 힐마크, 붉은 녹물을 대리석 손상 없이 1분 안에 제거하는 비법입니다.</p>
+    </div>
+
+    <!-- 대원칙 경고 -->
+    <div class="danger-box">
+      <strong>⚠️ 초보 청소원의 치명적 금기 사항:</strong><br>
+      • <strong>대리석에 산성 세제(구연산/화장실용 세제) 투입 절대 금지</strong> → 대리석 광택이 하얗게 타버려 원상복구 불가!<br>
+      • <strong>스크래퍼 90도 직각 세우기 금지</strong> → 대리석에 깊은 칼자국 스크래치 발생.<br>
+      • <strong>반드시 15~20도 저각 유지 & 약품 사용 후 물걸레 100% 린스</strong>
+    </div>
+
+    <!-- 툴 파우치 5대 무기 -->
+    <div class="sec-title">🎒 허리 툴 파우치 5대 포켓 무기</div>
+    <div class="pouch-grid">
+      <div class="pouch-item">
+        <div class="pouch-item-name">1. 도루코 40도 스크래퍼</div>
+        <div class="pouch-item-desc">껌, 시멘트 덩어리, 스티커. 저각 15도로 튕기듯 분리.</div>
+      </div>
+      <div class="pouch-item">
+        <div class="pouch-item-name">2. 오렌지 오일 리무버</div>
+        <div class="pouch-item-desc">D-리모넨 천연 추출물. 끈끈이 60초 침투 용해.</div>
+      </div>
+      <div class="pouch-item">
+        <div class="pouch-item-name">3. 고밀도 매직블럭</div>
+        <div class="pouch-item-desc">검은 힐마크, 손때. 물 묻혀 지우개처럼 3초 컷.</div>
+      </div>
+      <div class="pouch-item">
+        <div class="pouch-item-name">4. 중성 철분제거제</div>
+        <div class="pouch-item-desc">대리석 부식 0%. 붉은 녹물만 보라색으로 녹임.</div>
+      </div>
+    </div>
+
+    <!-- 5대 대표 오염별 제거 공식 -->
+    <div class="sec-title">🧪 5대 대표 오염별 초고속 제거 솔루션</div>
+
+    <!-- 1. 껌 -->
+    <div class="stain-card">
+      <div class="stain-header">
+        <div class="stain-name">① 검게 눌어붙은 껌 (Gum)</div>
+        <span class="stain-time">⏱️ 30초 컷</span>
+      </div>
+      <ol class="stain-steps">
+        <li>스크래퍼 칼날을 <strong>바닥과 15~20도</strong>로 아주 낮게 눕힙니다.</li>
+        <li>껌 밑바닥 틈새로 살짝 밀어 넣고, <strong>손목 스냅으로 가볍게 튕기듯</strong> 떼어냅니다.</li>
+        <li>남은 검은 테두리는 <strong>오렌지 리무버 1방울</strong>을 떨어뜨리고 10초 뒤 극세사포로 문지르면 소멸!</li>
+      </ol>
+      <div class="stain-alert">💡 겨울철 팁: 추운 날에는 껌이 딱딱하게 굳어 있어 톡 치면 한 번에 떨어집니다.</div>
+    </div>
+
+    <!-- 2. 스티커 끈끈이 -->
+    <div class="stain-card">
+      <div class="stain-header">
+        <div class="stain-name">② 전단지 스티커 & 양면테이프 끈끈이</div>
+        <span class="stain-time">⏱️ 1분 컷</span>
+      </div>
+      <ol class="stain-steps">
+        <li>종이 스티커 겉면 코팅지를 손톱이나 헤라로 살짝 긁어냅니다.</li>
+        <li><strong>오렌지 오일 리무버</strong>를 끈끈이에 2~3회 분사합니다.</li>
+        <li><strong>핵심: 딱 1분(60초)간 침투 대기</strong> (약품이 본드를 젤리처럼 녹임).</li>
+        <li>극세사포로 바깥쪽에서 안쪽으로 쓱 밀어내면 한 번에 깔끔 수거!</li>
+        <li>마지막은 젖은 걸레로 린스하여 미끄럼 방지.</li>
+      </ol>
+    </div>
+
+    <!-- 3. 힐마크 -->
+    <div class="stain-card">
+      <div class="stain-header">
+        <div class="stain-name">③ 검은 신발 고무 자국 (힐마크)</div>
+        <span class="stain-time">⏱️ 5초 컷</span>
+      </div>
+      <ol class="stain-steps">
+        <li>물걸레나 락스로 절대 안 지워지는 대표적인 고무 마찰 자국입니다.</li>
+        <li><strong>매직블럭에 물을 묻혀 꼭 짭니다.</strong></li>
+        <li>다목적 세정제(독일 키엘 토네이도)를 매직블럭에 1방울 묻힙니다.</li>
+        <li>고무 자국을 살살 문지르면 <strong>지우개로 연필 지우듯 3초 만에 소멸!</strong></li>
+      </ol>
+    </div>
+
+    <!-- 4. 붉은 녹물 -->
+    <div class="stain-card">
+      <div class="stain-header">
+        <div class="stain-name">④ 우산꽂이·소화기 밑 붉은 녹물</div>
+        <span class="stain-time">⏱️ 1분 컷 (화학 반응)</span>
+      </div>
+      <ol class="stain-steps">
+        <li><strong>치명적 주의:</strong> 대리석에 산성 녹제거제를 쓰면 대리석이 거품 내며 녹아버립니다!</li>
+        <li>하이지아 비밀병기: <strong>중성 철분제거제(휠클리너)</strong>를 녹 부위에 칙칙 분사합니다.</li>
+        <li>약 30초 뒤 산화철과 반응하여 <strong>투명한 액체가 짙은 보라색(Purple)으로 변하며 녹을 녹여냅니다.</strong></li>
+        <li>보라색으로 변했을 때 극세사포로 싹 닦아내면 <strong>대리석 손상 0%로 녹물 완벽 제거!</strong></li>
+      </ol>
+      <div class="stain-alert">✨ 고객 감동 포인트: 임대인이 몇 년간 못 지우던 녹물을 지워주면 100% 장기 계약 체결!</div>
+    </div>
+
+    <!-- 5. 유성매직 낙서 -->
+    <div class="stain-card">
+      <div class="stain-header">
+        <div class="stain-name">⑤ 택배기사 볼펜 자국 & 벽면 유성매직</div>
+        <span class="stain-time">⏱️ 20초 컷</span>
+      </div>
+      <ol class="stain-steps">
+        <li><strong>소독용 에탄올(83%)</strong>을 분사합니다.</li>
+        <li>에탄올의 유기용매 성분이 유성 잉크를 즉시 녹여 분해합니다.</li>
+        <li>마른 극세사포로 바로 닦아내면 얼룩 없이 증발 완료!</li>
+      </ol>
+    </div>
+
+  </div>
+
+</body>
+</html>

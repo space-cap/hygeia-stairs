@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 포켓 매뉴얼 — D-Day 24시간 실전 체크리스트</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--slate-900);
+      color: #f8fafc;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    /* 상단 공통 바 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .top-header {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-back {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-back:hover {
+      color: #2dd4bf;
+    }
+    .top-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+    }
+    .badge-doc {
+      background: rgba(13, 148, 136, 0.25);
+      border: 1px solid var(--primary);
+      color: #5eead4;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* 4대 매뉴얼 스와이프 탭 */
+    .nav-tabs-wrap {
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 12px 8px;
+      gap: 8px;
+    }
+    .nav-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-tab-item {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 20px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s;
+    }
+    .nav-tab-item.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .hero-summary {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1.5px solid rgba(16, 185, 129, 0.5);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero-summary h1 {
+      font-size: 19px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .hero-summary p {
+      font-size: 12.5px;
+      color: #cbd5e1;
+    }
+    .btn-reset {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-reset:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .sec-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 인터랙티브 체크리스트 카드 */
+    .check-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .check-item:hover {
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .check-item.done {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .check-item.done .item-text {
+      color: #94a3b8;
+      text-decoration: line-through;
+    }
+    .custom-check {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #475569;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: all 0.15s;
+    }
+    .check-item.done .custom-check {
+      background: var(--emerald);
+      border-color: var(--emerald);
+      color: white;
+    }
+    .custom-check::after {
+      content: '✓';
+      font-size: 13px;
+      font-weight: 900;
+      display: none;
+    }
+    .check-item.done .custom-check::after {
+      display: block;
+    }
+    .item-body {
+      flex: 1;
+    }
+    .item-text {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.45;
+    }
+    .item-sub {
+      font-size: 11.5px;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    /* 타임라인 카드 */
+    .timeline-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--primary);
+    }
+    .tl-time {
+      font-size: 12px;
+      font-weight: 800;
+      color: #5eead4;
+      margin-bottom: 3px;
+    }
+    .tl-act {
+      font-size: 14px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .tl-sub {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .quote-box {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--amber);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #fde68a;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 바 -->
+  <div class="top-bar">
+    <div class="top-header">
+      <a href="index.html" class="btn-back">‹ 현장 HQ</a>
+      <div class="top-title">골목길 포켓 매뉴얼</div>
+      <span class="badge-doc">SOP 23</span>
+    </div>
+
+    <!-- 4대 매뉴얼 스와이프 탭 -->
+    <div class="nav-tabs-wrap">
+      <a href="manual_sales.html" class="nav-tab-item">💬 영업 스크립트</a>
+      <a href="manual_route.html" class="nav-tab-item">🗺️ 대치동 동선</a>
+      <a href="manual_stain.html" class="nav-tab-item">🧰 오염 제거</a>
+      <a href="manual_checklist.html" class="nav-tab-item active">✅ D-Day 체크</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero-summary">
+      <div>
+        <h1>✅ D-Day 24시간 실전 체크리스트</h1>
+        <p>터치하여 준비 상태를 체크하세요 (자동 저장됨)</p>
+      </div>
+      <button class="btn-reset" onclick="resetAll()">초기화</button>
+    </div>
+
+    <!-- 1. D-1 전날 밤 패킹 (3kg) -->
+    <div class="sec-title">🎒 D-1 전날 밤 백팩 패킹 (3kg 미만)</div>
+    <div class="check-card">
+      <div class="check-item" onclick="toggleCheck(this, 'p1')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">A4 하드 클립보드 장착</div>
+          <div class="item-sub">도보 임장 기록부(field_crm.html) 2장 단단히 고정</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'p2')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">A4 홍보 전단지 40장</div>
+          <div class="item-sub">클립보드 뒤편에 정갈하게 끼워 준비</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'p3')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">명함 20장 (명함 지갑)</div>
+          <div class="item-sub">대표 양면 표준 명함 구겨지지 않게 보관</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'p4')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">유성 볼펜 2자루</div>
+          <div class="item-sub">1개 고장 대비 부드러운 검정 볼펜 2개 소지</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'p5')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">스마트폰 배터리 100% 완충</div>
+          <div class="item-sub">모바일 현장 사령탑(print/index.html) 바로가기 확인</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'p6')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">개인 위생용품 (생수 1병, 민트 캔디)</div>
+          <div class="item-sub">청결한 첫인상을 위한 구강 스프레이 또는 민트 캔디</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 복장 세팅 -->
+    <div class="sec-title">👔 복장 & 전문가 그루밍</div>
+    <div class="check-card">
+      <div class="check-item" onclick="toggleCheck(this, 'd1')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">다크 네이비 / 차콜 카라 피케티</div>
+          <div class="item-sub">등산복 금지! 단정하고 깔끔하게 다림질</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'd2')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">'하이지아 관리대표' 아크릴 자석 명찰 부착</div>
+          <div class="item-sub">왼쪽 가슴에 수평으로 정위치 (신뢰도 200% 상승)</div>
+        </div>
+      </div>
+
+      <div class="check-item" onclick="toggleCheck(this, 'd3')">
+        <div class="custom-check"></div>
+        <div class="item-body">
+          <div class="item-text">다크 그레이 슬랙스 & 깨끗한 단색 스니커즈</div>
+          <div class="item-sub">흙먼지 없이 깨끗하게 닦인 워킹화 착용</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 실전 당일 타임라인 -->
+    <div class="sec-title">⏱️ D-Day 실전 행동 타임라인</div>
+
+    <div class="timeline-card">
+      <div class="tl-time">10:30 (출발 전)</div>
+      <div class="tl-act">입 풀기 피칭 멘트 3회 낭독</div>
+      <div class="tl-sub">"안녕하십니까 사장님! 대치동 주민 하이지아 대표입니다. 1개 층만 무료로 닦아드릴게요!" 소리 내어 3번 읽기.</div>
+    </div>
+
+    <div class="timeline-card">
+      <div class="tl-time">14:00 (현장 도착)</div>
+      <div class="tl-act">한티역 2번 출구 진입 & Z자 스캔</div>
+      <div class="tl-sub">블록 A 골목을 걸으며 외관 5초 스캔. 우편함 전단지 수북한 빌라에 전단지 투입 및 CRM 기록.</div>
+    </div>
+
+    <div class="timeline-card">
+      <div class="tl-time">15:00 ~ 16:00 (대면 골든타임)</div>
+      <div class="tl-act">마주친 주민/임대인 30초 피칭</div>
+      <div class="tl-sub">주차장/분리수거장에서 마주치면 목례 후 "1개 층 무료 시범" 제안. 수락 시 연락처 수취.</div>
+    </div>
+
+    <div class="timeline-card">
+      <div class="tl-time">17:30 (귀가 후 1시간 마감)</div>
+      <div class="tl-act">CRM 정리 & 감사 카톡 발송</div>
+      <div class="tl-sub">수집한 15~20곳 DB 엑셀 정리. 시범 약속 임대인에게 저녁 7시 정중한 감사 문자 발송!</div>
+    </div>
+
+    <!-- 마인드셋 -->
+    <div class="quote-box">
+      <strong>💎 대표님의 3대 마인드셋:</strong><br>
+      • 10명에게 말 걸어 9명이 거절해도, <strong>딱 1명만 무료 시범을 받아주면 대성공!</strong><br>
+      • 우리는 구걸하러 가는 것이 아니라, <strong>건물 가치를 올려주러 가는 전문가</strong>입니다.
+    </div>
+
+  </div>
+
+  <script>
+    // 로컬 스토리지에 체크 상태 영구 저장
+    const STORAGE_KEY = 'hygeia_checklist_state';
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        document.querySelectorAll('.check-item').forEach(el => {
+          const id = el.getAttribute('data-id');
+          if (saved[id]) {
+            el.classList.add('done');
+          }
+        });
+      } catch (e) {}
+    }
+
+    function toggleCheck(el, id) {
+      el.setAttribute('data-id', id);
+      el.classList.toggle('done');
+      saveState();
+    }
+
+    function saveState() {
+      const state = {};
+      document.querySelectorAll('.check-item').forEach(el => {
+        const id = el.getAttribute('data-id');
+        if (id && el.classList.contains('done')) {
+          state[id] = true;
+        }
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function resetAll() {
+      if (confirm('체크리스트를 처음 상태로 초기화하시겠습니까?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        document.querySelectorAll('.check-item').forEach(el => el.classList.remove('done'));
+      }
+    }
+
+    // 초기화 시 data-id 부여 및 상태 로드
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.check-item').forEach((el, idx) => {
+        if (!el.getAttribute('data-id')) {
+          el.setAttribute('data-id', 'chk_' + idx);
+        }
+      });
+      loadState();
+    });
+  </script>
+</body>
+</html>

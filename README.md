@@ -14,9 +14,13 @@ hygeia-stairs/
 │   ├── calculator.html # 스마트폰 최적화 모바일 견적기 & 카톡 복사기
 │   ├── report.html     # 카톡 안심 4컷 사진 보고서 모바일 생성기
 │   ├── namecard.html   # 현장 대면용 양면 표준 명함 인쇄 웹페이지
-│   ├── flier.html      # A4 즉시 인쇄용 전단지 웹페이지
-│   ├── contract.html   # 현장 체결용 A4 1장 표준계약서 인쇄본
-│   └── field_crm.html  # 대치동 도보 임장 기록부 A4 가로 인쇄본
+│   ├── flier.html            # A4 즉시 인쇄용 전단지 웹페이지
+│   ├── contract.html         # 현장 체결용 A4 1장 표준계약서 인쇄본
+│   ├── field_crm.html        # 대치동 도보 임장 기록부 A4 가로 인쇄본
+│   ├── manual_sales.html     # 💬 [포켓 매뉴얼] 대면 피칭 & 5대 거절 대응 모바일 치트시트
+│   ├── manual_route.html     # 🗺️ [포켓 매뉴얼] 대치동 도보 임장 지도 & 3대 블록 동선
+│   ├── manual_stain.html     # 🧰 [포켓 매뉴얼] 계단·벽면 특수오염 1분 화학 용해 가이드
+│   └── manual_checklist.html # ✅ [포켓 매뉴얼] D-Day 24시간 패킹 & 터치형 인터랙티브 체크리스트
 ├── docs/               # [사업 계획 및 실전 매뉴얼]
 │   ├── README.md       # 전체 사업계획서 목차 및 읽는 순서
 │   ├── 09_lean_start_plan.md           # 300만원 자본금 사이드잡 린 스타트 계획

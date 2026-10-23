@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 포켓 매뉴얼 — 대치동 도보 임장 동선 & 지도</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--slate-900);
+      color: #f8fafc;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    /* 상단 공통 바 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .top-header {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-back {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-back:hover {
+      color: #2dd4bf;
+    }
+    .top-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+    }
+    .badge-doc {
+      background: rgba(13, 148, 136, 0.25);
+      border: 1px solid var(--primary);
+      color: #5eead4;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* 4대 매뉴얼 스와이프 탭 */
+    .nav-tabs-wrap {
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 12px 8px;
+      gap: 8px;
+    }
+    .nav-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-tab-item {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 20px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s;
+    }
+    .nav-tab-item.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .hero-summary {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.2) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1.5px solid rgba(56, 189, 248, 0.5);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .hero-summary h1 {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .hero-summary p {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .sec-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 블록 카드 */
+    .block-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .block-card.priority-1 {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.15) 0%, #1e293b 100%);
+    }
+    .block-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .badge-p1 { background: var(--primary); color: white; }
+    .badge-p2 { background: #3b82f6; color: white; }
+    .badge-p3 { background: #64748b; color: white; }
+    .block-name {
+      font-size: 17px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 6px;
+    }
+    .block-detail {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+    .block-detail strong {
+      color: #5eead4;
+    }
+
+    /* 타임라인 경로 */
+    .timeline {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .tl-step {
+      display: flex;
+      gap: 14px;
+      position: relative;
+    }
+    .tl-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 32px;
+      bottom: -16px;
+      width: 2px;
+      background: #334155;
+    }
+    .tl-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .tl-content-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 3px;
+    }
+    .tl-content-desc {
+      font-size: 12.5px;
+      color: #94a3b8;
+      line-height: 1.45;
+    }
+
+    /* 5초 외관 스캔 표 */
+    .scan-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .scan-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .scan-target {
+      font-size: 14px;
+      font-weight: 800;
+      color: white;
+    }
+    .scan-signal {
+      font-size: 11px;
+      font-weight: 800;
+      color: #f87171;
+      background: rgba(239, 68, 68, 0.15);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .scan-tip {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    .scan-pitch {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #5eead4;
+      background: rgba(13, 148, 136, 0.15);
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .time-box {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 13px;
+      color: #fef3c7;
+      line-height: 1.6;
+      margin: 16px 0;
+    }
+    .time-box strong {
+      color: #fbbf24;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 바 -->
+  <div class="top-bar">
+    <div class="top-header">
+      <a href="index.html" class="btn-back">‹ 현장 HQ</a>
+      <div class="top-title">골목길 포켓 매뉴얼</div>
+      <span class="badge-doc">SOP 21</span>
+    </div>
+
+    <!-- 4대 매뉴얼 스와이프 탭 -->
+    <div class="nav-tabs-wrap">
+      <a href="manual_sales.html" class="nav-tab-item">💬 영업 스크립트</a>
+      <a href="manual_route.html" class="nav-tab-item active">🗺️ 대치동 동선</a>
+      <a href="manual_stain.html" class="nav-tab-item">🧰 오염 제거</a>
+      <a href="manual_checklist.html" class="nav-tab-item">✅ D-Day 체크</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hero-summary">
+      <h1>🗺️ 대치동 도보 임장 지도 & 타겟 동선</h1>
+      <p>대치4동 저층 주거지 3대 권역 분석 및 길 건너편 5초 외관 스캔 공식입니다.</p>
+    </div>
+
+    <!-- 골든 타임 -->
+    <div class="time-box">
+      <strong>⏰ 임대인 대면 확률 3배 높은 골든 타임:</strong><br>
+      • <strong>★ 토·일 주말 14:00 ~ 17:00 (최고 추천)</strong>: 50~70대 건물주가 주차장 화분에 물을 주거나 분리수거장에 내려오는 시간대.<br>
+      • <strong>평일 오후 16:30 ~ 18:00</strong>: 저녁 전 동네 산책 및 우편함 확인 시간대.
+    </div>
+
+    <!-- 3대 핵심 블록 -->
+    <div class="sec-title">📍 대치동 빌라 밀집 3대 핵심 블록</div>
+
+    <!-- 블록 A -->
+    <div class="block-card priority-1">
+      <span class="block-badge badge-p1">★ 1순위 집중 (계약 성사율 최고)</span>
+      <div class="block-name">블록 A: 한티역 북동측 저층 빌라촌</div>
+      <div class="block-detail">
+        • <strong>위치</strong>: 한티역 1·2번 출구 뒤편 ~ 역삼로 사이 (도곡로63길, 역삼로62길, 역삼로64길)<br>
+        • <strong>특성</strong>: 4~5층 필로티 빌라 약 350여 동 밀집.<br>
+        • <strong>소유 구조</strong>: 4~5층 최고층에 60~70대 건물주가 거주하고 아래층 임대 놓은 전형적 수익형 빌라.<br>
+        • <strong>공략법</strong>: 임대인 현장 상주율이 가장 높아 대면 및 인터폰 접촉이 매우 용이함!
+      </div>
+    </div>
+
+    <!-- 블록 B -->
+    <div class="block-card">
+      <span class="block-badge badge-p2">2차 타겟 (상가 결합)</span>
+      <div class="block-name">블록 B: 선릉역 남동측 상가주택·원룸촌</div>
+      <div class="block-detail">
+        • <strong>위치</strong>: 선릉로86길, 역삼로69길 주변 (대치4동 북측)<br>
+        • <strong>특성</strong>: 1층 카페/식당/공방 + 2~5층 원룸/사무실 혼합 건물.<br>
+        • <strong>기회</strong>: 계단 청소 외 1층 상가 유리창 및 화장실 업셀(월 15~20만 원) 가능.
+      </div>
+    </div>
+
+    <!-- 블록 C -->
+    <div class="block-card">
+      <span class="block-badge badge-p3">3차 타겟</span>
+      <div class="block-name">블록 C: 대치사거리 배후 주거지</div>
+      <div class="block-detail">
+        • <strong>위치</strong>: 도곡로77길, 삼성로72길 일대 (학원가 배후 신축 빌라)<br>
+        • <strong>특성</strong>: 단가는 높으나(월 8~10만) 로비폰 보안 엄격. 1개 층 무료 시범으로 돌파.
+      </div>
+    </div>
+
+    <!-- 2시간 추천 동선 -->
+    <div class="sec-title">🚶‍♂️ 2시간 황금 도보 동선 (2.5km)</div>
+    <div class="timeline">
+      <div class="tl-step">
+        <div class="tl-num">1</div>
+        <div>
+          <div class="tl-content-title">[출발] 한티역 2번 출구 (14:00)</div>
+          <div class="tl-content-desc">롯데백화점 뒤편 도곡로63길 골목 진입. 허리 펴고 A4 클립보드 장착.</div>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">2</div>
+        <div>
+          <div class="tl-content-title">[핵심 탐색] 역삼로64길 저층 빌라촌</div>
+          <div class="tl-content-desc">좌우 골목 Z자 탐색. 우편함 전단지 투입 및 CRM 장부에 주소 15곳 기록.</div>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">3</div>
+        <div>
+          <div class="tl-content-title">[대면 & 휴식] 대치4동 주민센터 공원</div>
+          <div class="tl-content-desc">주민센터 앞 쉼터에서 생수 섭취 및 동네 어르신 가벼운 인사.</div>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">4</div>
+        <div>
+          <div class="tl-content-title">[제휴 방문] 선릉로86길 로컬 부동산</div>
+          <div class="tl-content-desc">원룸 전문 공인중개사 1~2곳 방문하여 박카스 & 명함 전달 ("소개 시 건당 2만 원").</div>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-num">5</div>
+        <div>
+          <div class="tl-content-title">[도착] 2시간 완주 및 복귀 (16:00)</div>
+          <div class="tl-content-desc">총 배포 전단지 30~40장, 수집 DB 15~20곳, 대면 피칭 2~3회 달성!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5초 외관 스캔 5대 포인트 -->
+    <div class="sec-title">👀 길 건너편 5초 외관 스캔 (불량 포착법)</div>
+
+    <div class="scan-card">
+      <div class="scan-head">
+        <div class="scan-target">1. 1층 공동현관 유리</div>
+        <span class="scan-signal">🚨 오염 포착</span>
+      </div>
+      <div class="scan-tip">유리창 하단 손지문, 비말 얼룩, 도어락 버튼 기름때 번들거림</div>
+      <div class="scan-pitch">💬 피칭: "1층 현관 유리만 거울처럼 닦아도 건물 전체가 살아납니다."</div>
+    </div>
+
+    <div class="scan-card">
+      <div class="scan-head">
+        <div class="scan-target">2. 1층 우편함 상태</div>
+        <span class="scan-signal">🚨 100% 미관리 증거</span>
+      </div>
+      <div class="scan-tip">대출·배달 전단지와 세금 고지서가 넘쳐 바닥에 나뒹굴고 있음</div>
+      <div class="scan-pitch">💬 피칭: "기존 업체가 손을 전혀 안 대고 있다는 명백한 증거!"</div>
+    </div>
+
+    <div class="scan-card">
+      <div class="scan-head">
+        <div class="scan-target">3. 필로티 주차장 구석</div>
+        <span class="scan-signal">🚨 꽁초 방치</span>
+      </div>
+      <div class="scan-tip">실외기 뒤편과 기둥 모서리에 담배꽁초 수십 개 및 캔커피 방치</div>
+      <div class="scan-pitch">💬 피칭: "주차장 꽁초 수거까지 기본 관리 범위에 다 들어갑니다."</div>
+    </div>
+
+    <div class="scan-card">
+      <div class="scan-head">
+        <div class="scan-target">4. 분리수거장 주변</div>
+        <span class="scan-signal">🚨 악취 유발</span>
+      </div>
+      <div class="scan-tip">젖은 박스가 널브러져 있고 재활용 쓰레기가 뒤섞여 있음</div>
+      <div class="scan-pitch">💬 피칭: "월 2만 원 추가 옵션(분리수거 대행) 즉시 제안 기회!"</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

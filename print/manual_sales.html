@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>하이지아 포켓 매뉴얼 — 대면 영업 & 거절 극복 화법</title>
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+    :root {
+      --primary: #0d9488;
+      --primary-dark: #0f766e;
+      --primary-light: #ccfbf1;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --amber: #f59e0b;
+      --amber-light: #fef3c7;
+      --emerald: #10b981;
+      --emerald-light: #d1fae5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--slate-900);
+      color: #f8fafc;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    /* 1. 상단 공통 헤더 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .top-header {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .btn-back {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-back:hover {
+      color: #2dd4bf;
+    }
+    .top-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: white;
+    }
+    .badge-doc {
+      background: rgba(13, 148, 136, 0.25);
+      border: 1px solid var(--primary);
+      color: #5eead4;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* 2. 상단 4대 매뉴얼 스와이프 탭 바 */
+    .nav-tabs-wrap {
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 12px 8px;
+      gap: 8px;
+    }
+    .nav-tabs-wrap::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-tab-item {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 20px;
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.2s;
+    }
+    .nav-tab-item.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.4);
+    }
+
+    /* 3. 메인 컨텐츠 컨테이너 */
+    .container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 헤더 요약 카드 */
+    .hero-summary {
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.2) 0%, rgba(30, 41, 59, 0.9) 100%);
+      border: 1.5px solid rgba(13, 148, 136, 0.5);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .hero-summary h1 {
+      font-size: 20px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+    .hero-summary p {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* 섹션 제목 */
+    .sec-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 말풍선 대화형 카드 */
+    .chat-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .chat-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .tag-situation { background: #334155; color: #cbd5e1; }
+    .tag-client { background: #475569; color: #f1f5f9; }
+    .tag-me { background: var(--primary); color: white; }
+
+    .bubble-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .bubble {
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      line-height: 1.55;
+    }
+    .bubble-client {
+      background: #2a374a;
+      color: #e2e8f0;
+      border-left: 3px solid #94a3b8;
+    }
+    .bubble-me {
+      background: rgba(13, 148, 136, 0.15);
+      border: 1px solid rgba(13, 148, 136, 0.4);
+      border-left: 4px solid var(--primary);
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .bubble-me strong {
+      color: #5eead4;
+    }
+    .copy-tip {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    /* 5대 거절 대응 그리드 */
+    .objection-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .objection-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .badge-reject {
+      background: #ef4444;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .reject-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: #f87171;
+    }
+    .solution-box {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid var(--emerald);
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #e2e8f0;
+    }
+    .solution-box strong {
+      color: #6ee7b7;
+    }
+
+    /* 원칙 팁 박스 */
+    .tip-box {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 12.5px;
+      color: #fef3c7;
+      margin: 16px 0;
+      line-height: 1.6;
+    }
+    .tip-box strong {
+      color: #fbbf24;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 공통 바 -->
+  <div class="top-bar">
+    <div class="top-header">
+      <a href="index.html" class="btn-back">‹ 현장 HQ</a>
+      <div class="top-title">골목길 포켓 매뉴얼</div>
+      <span class="badge-doc">SOP 17</span>
+    </div>
+
+    <!-- 4대 매뉴얼 스와이프 탭 -->
+    <div class="nav-tabs-wrap">
+      <a href="manual_sales.html" class="nav-tab-item active">💬 영업 스크립트</a>
+      <a href="manual_route.html" class="nav-tab-item">🗺️ 대치동 동선</a>
+      <a href="manual_stain.html" class="nav-tab-item">🧰 오염 제거</a>
+      <a href="manual_checklist.html" class="nav-tab-item">✅ D-Day 체크</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- 요약 헤더 -->
+    <div class="hero-summary">
+      <h1>💬 대면 피칭 & 5대 거절 대응 화법</h1>
+      <p>마주쳤을 때 30초 안에 호감을 얻고 <b>'1개 층 무료 시범'</b>으로 계약을 끌어내는 실전 멘트 치트시트입니다.</p>
+    </div>
+
+    <!-- 황금 원칙 -->
+    <div class="tip-box">
+      <strong>🎯 대화의 3대 황금률:</strong><br>
+      1. 절대 기존 업체를 욕하지 않는다 (건물 가치 칭찬으로 접근)<br>
+      2. 계약서 서명이 아니라 <b>"1개 층 무료 시범 1회 수락"</b>이 유일한 목표!<br>
+      3. <b>"저도 대치동 주민이고 매주 제가 직접 옵니다"</b> 지역성 강조.
+    </div>
+
+    <!-- 시나리오 1 -->
+    <div class="sec-title">📍 시나리오 1: 주차장·분리수거장에서 마주쳤을 때 (30초 피칭)</div>
+    <div class="chat-card">
+      <span class="chat-tag tag-situation">상황: 주차장 차 대거나 쓰레기 버리러 나온 50~70대 임대인 추정인</span>
+      <div class="bubble-wrap">
+        <div class="bubble bubble-me">
+          "안녕하십니까 사장님! 날씨가 많이 쌀쌀하죠?^^<br>
+          제가 여기 <strong>대치동 주민</strong>인데요, 이번에 동네 빌라 계단 관리 전문으로 청소를 시작한 <strong>하이지아 대표</strong>입니다.<br>
+          건물이 참 예쁜데 요즘 송화가루랑 흙먼지가 계단에 좀 앉았더라고요. 바쁘신 임대인분들 대신해서 제가 <strong>매주 직접</strong> 꼼꼼하게 쓸고 닦아드리고 있습니다."
+        </div>
+        <div class="bubble bubble-client">
+          "아~ 청소업체예요? 우린 됐어요." (1차 방어)
+        </div>
+        <div class="bubble bubble-me">
+          "네네 사장님! 당장 업체 바꾸시라는 말씀 전혀 아닙니다!<br>
+          마침 다음 주에 옆 빌라 일정이 있는데요, 제가 지나가는 길에 <strong>이 건물 1층 로비랑 계단 1개 층만 비용 1원도 안 받고 시범으로 싹 광택 내드릴 테니</strong> 상태만 비교해 보세요.<br>
+          마음에 안 드시면 그냥 끝내셔도 전혀 부담 없으십니다. 사장님 연락처만 살짝 알려주시면, 청소 끝나고 <strong>카톡으로 사진 딱 4장</strong> 보내드리겠습니다!"
+        </div>
+      </div>
+      <div class="copy-tip">💡 핵심: 1원도 안 받는 무료 시범 + 카톡 사진 보고 제안</div>
+    </div>
+
+    <!-- 시나리오 2 -->
+    <div class="sec-title">🔔 시나리오 2: 1층 로비폰에서 4~5층 최고층 호출 시</div>
+    <div class="chat-card">
+      <span class="chat-tag tag-situation">상황: 4~5층 우편함에 재산세 고지서 꽂혀있는 실소유주 세대 공략</span>
+      <div class="bubble-wrap">
+        <div class="bubble bubble-client">
+          (인터폰 연결) "여보세요? 누구세요?"
+        </div>
+        <div class="bubble bubble-me">
+          "안녕하세요 사장님! 빌라 공용부 관리 상태 관련해서 잠시 말씀 여쭈려고 호출드렸습니다. 잡상인 아니고요, 대치동에서 빌라 계단 관리하는 하이지아 대표입니다."
+        </div>
+        <div class="bubble bubble-client">
+          "우린 청소업체 있어서 필요 없어요."
+        </div>
+        <div class="bubble bubble-me">
+          "네 사장님 잘 알고 있습니다! 기존 업체 있으셔도 계단 난간 묵은 때는 잘 안 지워지거든요.<br>
+          업체 바꾸실 필요 전혀 없고, <strong>제가 1개 층만 묵은 때 시범으로 벗겨드릴 테니 기존 업체랑 청결도만 비교해 보세요.</strong> 우편함에 안내장 한 장 넣어두고 가겠습니다!"
+        </div>
+      </div>
+    </div>
+
+    <!-- 5대 거절 대응 -->
+    <div class="sec-title">🛡️ 현장 5대 거절 즉시 극복 치트시트</div>
+
+    <div class="objection-card">
+      <div class="objection-head">
+        <span class="badge-reject">거절 1</span>
+        <div class="reject-text">"기존에 오랫동안 쓰던 청소업체가 있어요."</div>
+      </div>
+      <div class="solution-box">
+        <strong>즉시대응:</strong> "네 사장님! 기존 업체 계약을 지금 해지하시라는 말씀이 아닙니다. 많은 임대인분들이 '알바가 5분 만에 대충 훔치고 도망간다'며 불만이 많으십니다. 기존 업체 계약 끝나는 시점에 비교해 보실 수 있도록, <strong>다음 주에 1개 층만 무료로 닦아드릴 테니 청결도만 한번 비교해 보세요!</strong>"
+      </div>
+    </div>
+
+    <div class="objection-card">
+      <div class="objection-head">
+        <span class="badge-reject">거절 2</span>
+        <div class="reject-text">"청소비가 비싼 것 같아요."</div>
+      </div>
+      <div class="solution-box">
+        <strong>즉시대응:</strong> "사장님, 4층 기준 월 7만 원이면 <strong>회당 17,500원꼴</strong>입니다. 국밥 한 그릇 반 가격으로 현관 유리 광택, 손잡이 에탄올 살균, 주차장 담배꽁초 수거까지 대표가 직접 끝내드립니다. 매회 카톡으로 완료 사진 4장도 바로 쏴드립니다!"
+      </div>
+    </div>
+
+    <div class="objection-card">
+      <div class="objection-head">
+        <span class="badge-reject">거절 3</span>
+        <div class="reject-text">"새벽에 시끄럽게 청소기 돌려서 세입자 항의 올까 봐 싫어요."</div>
+      </div>
+      <div class="solution-box">
+        <strong>즉시대응:</strong> "사장님, 저희는 <strong>모터 청소기를 일체 쓰지 않는 0dB 무소음 건·반건식 극세사 청소</strong>를 합니다. 수험생과 직장인이 곤히 잠든 새벽 5시에도 발소리 하나 없이 조용하게 끝냅니다. 소음 민원 들어오면 제가 100% 책임지겠습니다!"
+      </div>
+    </div>
+
+    <div class="objection-card">
+      <div class="objection-head">
+        <span class="badge-reject">거절 4</span>
+        <div class="reject-text">"내가 직접 청소해서 업체 필요 없어요."</div>
+      </div>
+      <div class="solution-box">
+        <strong>즉시대응:</strong> "사장님 연세에 무거운 대걸레 들고 4층 오르내리시면 무릎과 허리 관절 상하십니다. 한 달 7만 원으로 무릎 건강 아끼시고, 1층 현관유리 묵은 때만이라도 제가 이번 주에 공짜로 광택 내드릴 테니 한번 맡겨보세요!"
+      </div>
+    </div>
+
+    <div class="objection-card">
+      <div class="objection-head">
+        <span class="badge-reject">거절 5</span>
+        <div class="reject-text">"전단지 놓고 가세요. 생각나면 연락할게요."</div>
+      </div>
+      <div class="solution-box">
+        <strong>즉시대응:</strong> "네 사장님! 우편함에 넣어두겠습니다. 그런데 전단지만 보시면 알바 청소랑 뭐가 다른지 잘 안 와닿으시거든요. <strong>제가 다음 주 화요일에 1층 현관유리랑 바닥만 10분 만에 싹 닦아놓고 갈 테니</strong> 지나가시면서 직접 봐주세요!"
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
