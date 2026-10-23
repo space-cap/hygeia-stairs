@@ -70,7 +70,7 @@
 
 ## 3. 웹 브라우저 인쇄용 HTML/CSS 소스코드
 
-> **생성된 인쇄용 파일 바로가기**: [flier.html](file:///h:/lee/hygeia-stairs/docs/print/flier.html)  
+> **생성된 인쇄용 파일 바로가기**: [flier.html](file:///h:/lee/hygeia-stairs/print/flier.html)  
 > 브라우저(Chrome/Edge)에서 위 파일을 더블 클릭하여 연 뒤, 상단의 **[🖨️ A4 즉시 인쇄]** 버튼을 누르거나 `Ctrl + P`를 누르면 여백 없이 완벽한 A4 규격으로 출력됩니다. (인쇄 옵션에서 **'배경 그래픽 포함'** 체크 권장)
 
 아래는 해당 파일의 원본 소스코드입니다:
