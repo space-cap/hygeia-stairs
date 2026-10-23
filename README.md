@@ -33,6 +33,7 @@ hygeia-stairs/
 │   ├── 22_online_inbound_marketing_guide.md      # 당근마켓 & 네이버플레이스 0원 마케팅
 │   ├── 23_dday_final_checklist.md                # 현장 투입 D-Day 24시간 최종 체크리스트
 │   ├── 24_billing_and_payment_sop.md             # 월 관리비 정기 결제 & 미납 방지 매뉴얼
+│   ├── 25_local_digital_marketing_guide.md       # 초밀착 로컬 디지털 마케팅 가이드
 │   └── (01~08 거시 사업계획서 및 스케일업 시나리오)
 └── README.md
 ```
@@ -51,8 +52,9 @@ hygeia-stairs/
 2. **D-Day 24시간 행동 체크리스트**: [`docs/23_dday_final_checklist.md`](docs/23_dday_final_checklist.md)
 3. **도보 임장 지도 & 동선**: [`docs/21_daechi_field_map_and_route.md`](docs/21_daechi_field_map_and_route.md)
 4. **실전 영업 & 거절 극복 치트시트**: [`docs/17_sales_script_and_objection_handling.md`](docs/17_sales_script_and_objection_handling.md)
-5. **0원 온라인 인바운드 마케팅**: [`docs/22_online_inbound_marketing_guide.md`](docs/22_online_inbound_marketing_guide.md)
-6. **월 결제 & 미납 방지 매뉴얼**: [`docs/24_billing_and_payment_sop.md`](docs/24_billing_and_payment_sop.md)
-7. **직장인 겸업 안전 세무 가이드**: [`docs/18_tax_and_business_registration_guide.md`](docs/18_tax_and_business_registration_guide.md)
-8. **무소음 청소 매뉴얼**: [`docs/10_silent_villa_cleaning.md`](docs/10_silent_villa_cleaning.md)
-9. **전체 사업계획서 인덱스**: [`docs/README.md`](docs/README.md)
+5. **초밀착 로컬 디지털 마케팅**: [`docs/25_local_digital_marketing_guide.md`](docs/25_local_digital_marketing_guide.md)
+6. **0원 온라인 인바운드 마케팅**: [`docs/22_online_inbound_marketing_guide.md`](docs/22_online_inbound_marketing_guide.md)
+7. **월 결제 & 미납 방지 매뉴얼**: [`docs/24_billing_and_payment_sop.md`](docs/24_billing_and_payment_sop.md)
+8. **직장인 겸업 안전 세무 가이드**: [`docs/18_tax_and_business_registration_guide.md`](docs/18_tax_and_business_registration_guide.md)
+9. **무소음 청소 매뉴얼**: [`docs/10_silent_villa_cleaning.md`](docs/10_silent_villa_cleaning.md)
+10. **전체 사업계획서 인덱스**: [`docs/README.md`](docs/README.md)
